@@ -69,6 +69,114 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ctfshow-wen入门-爆破篇-21" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/15/ctfshow-wen%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-21/" class="article-date">
+  <time class="dt-published" datetime="2025-01-15T11:10:23.000Z" itemprop="datePublished">2025-01-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/15/ctfshow-wen%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-21/">ctfshow wen入门 爆破篇 21-</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>                                                        ctfshow web 入门 爆破篇</p>
+<p><strong>web  21</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a169468627.png" title alt style="zoom:67%;">
+
+<p>1.先下载题目给的密码和打开网页</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a176921941.png"></p>
+<p>2.猜测账号为admin  密码随便输   进行抓包</p>
+<p>抓完包后发到lntruderl</p>
+<img title src="https://www.helloimg.com/i/2025/01/17/678a181459c0d.png" alt style="zoom:50%;">
+
+<p>3.猜测最下面的是刚才是输出的账号和密码并猜测为base64编码  并且因为是post传参所以取消url  进行解码</p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a18a51e09b.png" title alt style="zoom:33%;">
+
+<p>4.看到解码  pload设置:前缀为admin:的base64编码  其他的设置如图</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a193d825b4.png"></p>
+<p>5.进行攻击  然后看状态码200就可以得到flag</p>
+<p><strong>web  22</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a1acd5d3e0.png" title alt style="zoom:67%;">
+
+<p>.这道题好像写不了了</p>
+<p><strong>web 23</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a1b66c118c.png" title alt style="zoom:67%;">
+
+<p>1.进入页面随便传一个参数然后抓包</p>
+<img title src="https://www.helloimg.com/i/2025/01/17/678a1ca25f130.png" alt style="zoom:33%;">
+
+<p>2.然后发到lntruderl</p>
+<p>3.设置参数为攻击点    并按照如图设置</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a1e2062e4a.png"></p>
+<p>4.攻击结束后   按照长度排序第一个不同的就对代开后得到flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a1e966fc73.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a1f0b62cea.png"></p>
+<p><strong>web 24</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a1f99eb304.png" title alt style="zoom:50%;">
+
+<p>1.进入后发现是代码审计</p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a1ffd2512b.png" title alt style="zoom:50%;">
+
+<p>2.看到随机种子直接发到php在线运行网页中运行</p>
+<img title src="https://www.helloimg.com/i/2025/01/17/678a206c585a0.png" alt style="zoom:33%;">
+
+<p>3.直接传入参数r&#x3D;1155388967  得到flag</p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a210bdde4a.png" title alt style="zoom:50%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web  25</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a2203d941e.png" title alt style="zoom:50%;">
+
+<p>1.进入后发现为代码审计 先输入r&#x3D;0得到<code>-intval(mt_rand())</code>的值</p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a2276b4474.png" title alt style="zoom:33%;">
+
+<p>2.利用kali下载php_mt_seed工具爆破种子</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a232ab4563.png"></p>
+<p>3.查看网页的php版本</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a23809b4aa.png"></p>
+<p>4.因此有两个种子被爆出来  一一测试先测试1313138925</p>
+<p>5.在php在线网页运行</p>
+<img src="https://www.helloimg.com/i/2025/01/17/678a24881fdd8.png" title alt style="zoom:33%;">
+
+<p>4.输入后不会  换为第二个种子3985641666</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a2fb4017b6.png"></p>
+<p> 5.输入参数得到flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a2fec39641.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/15/ctfshow-wen%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-21/" data-id="cm60mbboq00002gcx2xb537ba" data-title="ctfshow wen入门 爆破篇 21-" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-showctf-web入门12-20" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/" class="article-date">
@@ -92,159 +200,108 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>    <strong>web 12:</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865803a60a9.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b1f4e000.png"></p>
 <p>1. 进入网页后先查看源代码发现什么也没有  再抓包发现也是一无所获</p>
 <p>2. 用虚拟机kali 命令dirsearch 网页地址 -e*扫描网页    发现robots.txt</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865801719c6.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b3a8debf.png"></p>
 <p>robots.txt: 一种协议(robots协议 也称爬虫协议)  作用:显示可访问的页面</p>
 <p>3. 进入admin页面出现了登录界面</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865806ab7a3.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b5fa8466.png"></p>
 <p>4. 猜测账号是:damin</p>
 <p>5. 在看了别人写的wp发现密码在刚开始页面的最<u><span><font face="宋体">下面</font>372619038</span></u></p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/678659ac40640.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b7686058.png"></p>
 <p>6. 输入账号密码后得到flag</p>
 <p>    <strong>web 13:</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/6786599223cc1.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3bc139b03.png"></p>
 <p>1. 对网页进行一系列操作(如:查看页面源代码、用dirsearch命令等)</p>
 <p>2. 发现一无所获</p>
 <p>3. 发现题目给出提示</p>
-<p>4. <img src="https://www.helloimg.com/i/2025/01/14/6786596cf1779.png"></p>
+<p>4. <img src="https://www.helloimg.com/i/2025/01/17/678a3bda559f0.png"></p>
 <p>5. 回到网页进行检查在网页的最下放发现document(译:文件)并且可以点击</p>
 <p>6. 进入后发现</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/678659e252ccb.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3c10bc972.png"></p>
 <p>7. 直接点击给出的后台地址会发现错误    需要把you-domain改为你的网页地址</p>
-<p>8. <img src="https://www.helloimg.com/i/2025/01/14/67865a0dd321e.png"></p>
+<p>8. <img src="https://www.helloimg.com/i/2025/01/17/678a3bf898596.png"></p>
 <p>9. 输入账号和密码后等到flag</p>
-<p>10.<img src="https://www.helloimg.com/i/2025/01/14/67865a362b211.png"></p>
+<p>10.<img src="https://www.helloimg.com/i/2025/01/17/678a3c2819d29.png"></p>
 <p>    <strong>Web 14:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/67865a8ac52a5.png"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3c708475f.png"></p>
 <p>1. 题目给出提示直接访问&#x2F;editor</p>
-<p>2. 进入<img src="https://www.helloimg.com/i/2025/01/14/67865ab87e5a8.png"></p>
+<p>2. 进入<img src="https://www.helloimg.com/i/2025/01/17/678a3c8c315b8.png"></p>
 <p>3. 不管输入什么都会是404页面</p>
 <p>4. 然后下意识就去上传一句话木马结果:</p>
-<p>5. <img src="https://www.helloimg.com/i/2025/01/14/67865adc48f77.png"></p>
+<p>5. <img src="https://www.helloimg.com/i/2025/01/17/678a3ca581087.png"></p>
 <p>6. 之后,在上传图片的网络图片中发现网页根目录</p>
-<p>7. <img src="https://www.helloimg.com/i/2025/01/14/67865b044ca08.png"></p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865b286b8ef.png"></p>
+<p>7. <img src="https://www.helloimg.com/i/2025/01/17/678a3cc106197.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3cd73b4ab.png"></p>
 <p>8. 最后发现var&#x2F;www&#x2F;html&#x2F;nothinghere&#x2F;fl000g.txt</p>
 <p>9. 访问   网站地址&#x2F;nothinghere&#x2F;fl000g.txt   得到flag</p>
 <p>    <strong>Web 15:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/67865bc055bf1.png"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3d26c7c1d.png"></p>
 <p>1. 先对网页进行操作   在用dirsearch命令扫描后得到</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865bf224313.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3d3b66512.png"></p>
 <p>2. 访问到admin时发现进入到  后台登录系统</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865c102da32.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3d4ea7565.png"></p>
 <p>3. 在查遍整个网页后就发现一个邮件  把邮件号当作密码输入错误  在忘记密码中输入邮件号依然错误</p>
 <p>4. 因为忘记密码要输入地点  使用在qq中查找  但我没查到不知道为什么   网上看攻略是查到了</p>
-<p>5. <img src="https://www.helloimg.com/i/2025/01/14/67865c3cca1f0.png"><img src="https://www.helloimg.com/i/2025/01/14/67865c7bca92b.png"></p>
+<p>5. <img src="https://www.helloimg.com/i/2025/01/17/678a3d6a79e01.png"><img src="https://www.helloimg.com/i/2025/01/17/678a3d93eaa22.png"></p>
 <p>6. 在忘记密码中输入  西安  给出新密码</p>
 <p>7. 在登录中账号:admin  密码:给出的</p>
-<p>8. 得到flag:</p>
-<p>    <img src="https://www.helloimg.com/i/2025/01/14/67865cb123d84.png"></p>
+<p>8. 得到flag:<img src="https://www.helloimg.com/i/2025/01/17/678a3daea3b45.png"></p>
+<p>    </p>
 <p> </p>
 <p>   <strong>Web 16:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/67865cd9ad5a3.png"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3dee442b2.png"></p>
 <p>1. 题目给出提示测试探针</p>
-<p>2. 探针:<img src="https://www.helloimg.com/i/2025/01/14/67865cfb8d913.png"></p>
+<p>2. 探针:<img src="https://www.helloimg.com/i/2025/01/17/678a3e089fa1f.png"></p>
 <p>3. 在访问url加入后缀后</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865d248eff7.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3e237d9b1.png"></p>
 <p>4. 点击phpinfo进入</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865d48d1f4a.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3e3f61ea3.png"></p>
 <p>5. 搜索flag</p>
 <p>6. 找到flag</p>
 <p>    <strong>Web 17:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/67865d82e0606.png"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3e79a6e06.png"></p>
 <p>1. 提示说会有文件泄露  这种情况一般直接用命令dirsearch扫描网页</p>
 <p>2. 扫描结果</p>
-<p>3. <img src="https://www.helloimg.com/i/2025/01/14/67865d9c44653.png"></p>
+<p>3. <img src="https://www.helloimg.com/i/2025/01/17/678a3e9bbac67.png"></p>
 <p>4. 直接访问网页&#x2F;backup.sql</p>
 <p>5. 然后就下载</p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a3eb52ce7e.png"></p>
 <p>6. 进入直接发现flag</p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/678658079f199.png"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3ecb45575.png"></p>
 <p>   ** Web 18:**</p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/67865dc62a35c.png"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3efe422cb.png"></p>
 <p>1.进入后发现是个小游戏 我觉得一般人都不能通过玩获得flag</p>
 <p>2.按f12在调试器的js文件中找到变量score和条件&gt;100</p>
 <p>3.直接在控制台输入score&#x3D;200 在游戏开始时按Enter</p>
-<img title src="https://www.helloimg.com/i/2025/01/14/67865de44a661.png" alt style="zoom:80%;">
-
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3f1c941cc.png"></p>
 <p>4. 幺幺零点皮爱吃皮&#x3D;110.php</p>
 <p>5. 访问网站&#x2F;110.php 得到flag</p>
-<p>6. </p>
-<p>        <img src="https://www.helloimg.com/i/2025/01/14/67865e1450eaf.png"></p>
+<p>6. <img src="https://www.helloimg.com/i/2025/01/17/678a3f33d8528.png"></p>
+<p>        </p>
 <p><strong>Web 19:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/67865e3de6601.png" title alt style="zoom:80%;"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3f67426d2.png"></p>
 <p>1. 打开网页源代码</p>
-<p>2. <img src="https://www.helloimg.com/i/2025/01/14/67865e66d87cd.png" title alt style="zoom:50%;"></p>
+<p>2. <img src="https://www.helloimg.com/i/2025/01/17/678a3f7cc73ef.png"></p>
 <p>3. 根据给出提示直接在f12的hackbar的post中输入</p>
-<p>4. <img src="https://www.helloimg.com/i/2025/01/14/67865eaf4cd7a.png" title alt style="zoom:80%;"></p>
+<p>4. <img src="https://www.helloimg.com/i/2025/01/17/678a3f938d7d6.png"></p>
 <p>5. 直接得到flag</p>
-<p>6. <img src="https://www.helloimg.com/i/2025/01/14/67865f0331c83.png"></p>
+<p>6. <img src="https://www.helloimg.com/i/2025/01/17/678a3fb0a7650.png"></p>
 <p>    </p>
 <p><strong>Web 20:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/14/67865f2118b54.png"></p>
+<p> <img src="https://www.helloimg.com/i/2025/01/17/678a4010d0476.png"></p>
 <p>1. 直接用dirsearch扫描网页  扫描结果为</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865f7c45dee.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a4025be4bb.png"></p>
 <p>2. 接着用命令dirsearch扫描网页&#x2F;db  得到</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67864049d221b.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a404298dc0.png"></p>
 <p>3. 直接访问下载文件在直接查找flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/14/67865fb10217b.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/17/678a4058e8296.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/" data-id="cm5whhwkd0000hwcxatat2vbz" data-title="showctf web入门12~20" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/11/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-01-11T12:26:26.875Z" itemprop="datePublished">2025-01-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/11/hello-world/" data-id="cm5s6px8z0000ggcxcg9sb1yt" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/" data-id="cm60mdy0u00004gcxhb3c2djd" data-title="showctf web入门12~20" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -287,11 +344,11 @@
       <ul>
         
           <li>
-            <a href="/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/">showctf web入门12~20</a>
+            <a href="/2025/01/15/ctfshow-wen%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-21/">ctfshow wen入门 爆破篇 21-</a>
           </li>
         
           <li>
-            <a href="/2025/01/11/hello-world/">Hello World</a>
+            <a href="/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/">showctf web入门12~20</a>
           </li>
         
       </ul>

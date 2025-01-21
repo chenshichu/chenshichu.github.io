@@ -69,6 +69,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ctfshow-web入门-命令篇(一)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/" class="article-date">
+  <time class="dt-published" datetime="2025-01-21T05:50:32.000Z" itemprop="datePublished">2025-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/">命令执行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>                                                                        ctfshow   web入门    命令篇(一)</p>
+<p>    <strong>web29</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/21/678f3543bc6b0.png" title alt style="zoom:33%;">
+
+<p>1.进入后发现是代码审计</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f35a2496b6.png"></p>
+<p>2.目的是进入if中    首先要符合  <strong>!preg_match(“&#x2F;flag&#x2F;i”, $c</strong> )  即c的变量不能包含flag的大小写(&#x2F;i指的是无视大小写)</p>
+<p>3.先查看网页的目录利用命令  <strong>ls</strong></p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f36a51360a.png"></p>
+<p>4.发现存在flag.php  利用*或?绕过    得到flag    用cat命令也可以但需要打开源代码才能查看flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f372d2fb84.png"></p>
+<p><strong>web30</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/21/678f3ab2b34a8.png" title alt style="zoom:33%;">
+
+<p>1.进入后发发现我们要绕过**!preg_match(“&#x2F;flag|system|php&#x2F;i”, $c)**</p>
+<p>System可以用passthru代替</p>
+<p>flag.php  用fla?.php  或者  *符合绕过</p>
+<p>然后得到flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f3b86929ee.png"></p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f3bc5194ab.png"></p>
+<p><strong>web31</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/21/678f3e98e9ad3.png" title alt style="zoom:33%;">
+
+<p>1.进入后发现要绕过&#x2F;flag|system|php|cat|sort|shell|.| |&#39;&#x2F;i  比上一题多了个空格</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f3f29440f5.png"></p>
+<p>空格可以用%09代替</p>
+<p>然后得到flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f3f4edee7a.png"></p>
+<p><strong>web32</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/21/678f461ee44ed.png" title alt style="zoom:33%;">
+
+<p>1.进入网页后 发现过滤<code>flag|system|php|cat|sort|shell|\.| |\&#39;|\`|echo|\;|\(/i</code></p>
+<p>利用文件包含来获取</p>
+<p>c&#x3D;include$_GET[1]?&gt;&amp;1&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php(相当于建立一个a网页并把flag.php的内容进行base64编码后复制到a网页)</p>
+<img title src="https://www.helloimg.com/i/2025/01/21/678f604f6f2ee.png" alt style="zoom:33%;">
+
+<p>2.进行base64解码 得到flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f60e3845dd.png"></p>
+<p><strong>web33</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/21/678f659a402e2.png" title alt style="zoom:50%;">
+
+<p>1.和web32一样直接利用c&#x3D;include$_GET[1]?&gt;&amp;1&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f66b028a14.png" title alt style="zoom:33%;"><img src="https://www.helloimg.com/i/2025/01/21/678f66cea8227.png" title alt style="zoom:33%;"></p>
+<p>解码后得到flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/21/678f674a89c80.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/" data-id="cm669z43b000120cx3pms2xyc" data-title="命令执行" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-ctfshow-web入门-爆破篇-(二)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)/" class="article-date">
@@ -239,9 +322,9 @@
 
 
   
-    <article id="post-showctf-web入门12-20" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-ctfshow-web入门-12-20" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/" class="article-date">
+    <a href="/2025/01/14/ctfshow-web%E5%85%A5%E9%97%A8-12-20/" class="article-date">
   <time class="dt-published" datetime="2025-01-14T08:09:55.000Z" itemprop="datePublished">2025-01-14</time>
 </a>
     
@@ -253,7 +336,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/">showctf web入门12~20</a>
+      <a class="p-name article-title" href="/2025/01/14/ctfshow-web%E5%85%A5%E9%97%A8-12-20/">showctf web入门12~20</a>
     </h1>
   
 
@@ -363,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/" data-id="cm60mdy0u00004gcxhb3c2djd" data-title="showctf web入门12~20" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/14/ctfshow-web%E5%85%A5%E9%97%A8-12-20/" data-id="cm669z43c000220cxeq09h1zv" data-title="showctf web入门12~20" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -406,6 +489,10 @@
       <ul>
         
           <li>
+            <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/">命令执行</a>
+          </li>
+        
+          <li>
             <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)/">ctfshow 爆破篇 (二)</a>
           </li>
         
@@ -414,7 +501,7 @@
           </li>
         
           <li>
-            <a href="/2025/01/14/showctf-web%E5%85%A5%E9%97%A812-20/">showctf web入门12~20</a>
+            <a href="/2025/01/14/ctfshow-web%E5%85%A5%E9%97%A8-12-20/">showctf web入门12~20</a>
           </li>
         
       </ul>

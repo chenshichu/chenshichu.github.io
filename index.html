@@ -69,9 +69,140 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-ctfshow-web入门-命令篇(三)[41-]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-ctfshow-web入门-命令篇(四)[51-]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/" class="article-date">
+    <a href="/2025/01/30/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E5%9B%9B)%5B51-%5D/" class="article-date">
+  <time class="dt-published" datetime="2025-01-30T05:11:49.000Z" itemprop="datePublished">2025-01-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/30/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E5%9B%9B)%5B51-%5D/">ctfshow-web入门-命令篇(四)[51-]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>web51</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b0abb6e535.png" title alt style="zoom:33%;">
+
+<p>进入后发现比上一题多过滤了tac</p>
+<p><img src="https://www.helloimg.com/i/2025/01/30/679b0b835d1fb.png"></p>
+<p>因此把tac换为ta\c绕过</p>
+<p>构造:</p>
+<p>?c&#x3D;ta\c&lt;&gt;fla\给.php||</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b0bae55780.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web52</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b0f0fb7e3f.png" title alt style="zoom:33%;">
+
+<p>发现把&lt;&gt;给过滤了</p>
+<p>用${IFS}来代替&lt;&gt;</p>
+<p><img src="https://www.helloimg.com/i/2025/01/30/679b10786a8e4.png"></p>
+<p>构造:</p>
+<p>?c&#x3D;ta\c${IFS}fla\g.php||</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b101465ab5.png" title alt style="zoom:33%;">
+
+<p>但发现没有得到flag</p>
+<p>查看根目录    构造:?c&#x3D;ls${IFS}&#x2F;||</p>
+<p>发现存在flag</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b10bb5ed2b.png" title alt style="zoom:33%;">
+
+<p>访问flag后得到flag</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b0ffb5fcca.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web53</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b15588e741.png" title alt style="zoom:33%;">
+
+<p>发现取消了”黑洞设备”</p>
+<p><img src="https://www.helloimg.com/i/2025/01/30/679b17302040f.png"></p>
+<p>直接构造:?c&#x3D;ta\c${IFS}fla\g.php</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b16ee07c34.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web54</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b1c809638b.png" title alt style="zoom:33%;">
+
+<p>发现把\过滤了所以<strong>ta\c和fla\g</strong>不能用了  </p>
+<p><img src="https://www.helloimg.com/i/2025/01/30/679b1d192ed63.png"></p>
+<p>ta\c可以用vi命令代替</p>
+<p>fla\g可以用fla?.php代替</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b1d986b724.png" title alt style="zoom:33%;">
+
+<p>然后打开页面源代码发现flag</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b1dcd0dee0.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web55</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b2029e9f58.png" title alt style="zoom:33%;">
+
+<p>发现过滤了<strong>a-z</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b2066ea3da.png" title alt style="zoom:33%;">
+
+<p>可以用?直接用base64访问</p>
+<p>构造:?c&#x3D;&#x2F;???&#x2F;????64 ????.???</p>
+<p>意思为：?c&#x3D;&#x2F;bin&#x2F;base64 flag.php</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b20badc518.png" title alt style="zoom:33%;">
+
+<p>进行解码</p>
+<img src="https://www.helloimg.com/i/2025/01/30/679b21087fe5c.png" title alt style="zoom:33%;">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/30/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E5%9B%9B)[51-]/" data-id="cm6izjsvf0001vccxghtc6bpt" data-title="ctfshow-web入门-命令篇(四)[51-]" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ctfshow-web入门-命令篇(三)[41-50]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-50%5D/" class="article-date">
   <time class="dt-published" datetime="2025-01-25T04:58:01.000Z" itemprop="datePublished">2025-01-25</time>
 </a>
     
@@ -83,7 +214,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/">ctfshow-web入门-命令篇(三)[41-]</a>
+      <a class="p-name article-title" href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-50%5D/">ctfshow-web入门-命令篇(三)[41-50]</a>
     </h1>
   
 
@@ -106,20 +237,6 @@
 <p>4.然后在抓包软件输入结果然后得到flag</p>
 <img src="https://www.helloimg.com/i/2025/01/25/679484a704f88.png" title alt style="zoom:33%;">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <p>先介绍知识:</p>
 <p>”&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1“可以用;、||、%26、%0a过滤</p>
 <p>更深原理入口:<a target="_blank" rel="noopener" href="https://blog.csdn.net/albertsh/article/details/132033812">linux环境下运行脚本时常用＞&#x2F;dev&#x2F;null 2＞&amp;1 &amp;这一串的作用_&gt;nul 2&gt;&amp;1-CSDN博客</a></p>
@@ -130,16 +247,6 @@
 <p><img src="https://www.helloimg.com/i/2025/01/25/679493c8be5e1.png"></p>
 <p>然后利用上面的绕过得到flag</p>
 <img src="https://www.helloimg.com/i/2025/01/25/6794942d4df1b.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
-
-
 
 <p><strong>web43</strong></p>
 <img src="https://www.helloimg.com/i/2025/01/25/67949c9cb6f04.png" title alt style="zoom:33%;">
@@ -152,16 +259,6 @@
 <p>如</p>
 <img src="https://www.helloimg.com/i/2025/01/25/67949d654479f.png" title alt style="zoom:33%;">
 
-
-
-
-
-
-
-
-
-
-
 <p><strong>web44</strong></p>
 <p>与web43相比  多了flag过滤</p>
 <p>可以用*或?过滤</p>
@@ -169,14 +266,6 @@
 <p>?是匹配1和字符  如:fla?.php</p>
 <p>所以直接改造 :  ?c&#x3D;tac fla?php%0a</p>
 <img src="https://www.helloimg.com/i/2025/01/25/6794a15d94fdd.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
 
 <p><strong>web45</strong></p>
 <img src="https://www.helloimg.com/i/2025/01/25/6794b8b83307e.png" title alt style="zoom:33%;">
@@ -206,10 +295,6 @@
 <p>所以构造相同</p>
 <img src="https://www.helloimg.com/i/2025/01/25/6794cb64417b1.png" title alt style="zoom:33%;">
 
-
-
-
-
 <p><strong>web50</strong></p>
 <img src="https://www.helloimg.com/i/2025/01/25/6794cec29b061.png" title alt style="zoom:33%;">
 
@@ -225,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)[41-]/" data-id="cm6c4yj6o000084cxbmg7c6d5" data-title="ctfshow-web入门-命令篇(三)[41-]" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)[41-50]/" data-id="cm6izjsve0000vccxfsekc7tg" data-title="ctfshow-web入门-命令篇(三)[41-50]" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -755,7 +840,11 @@
       <ul>
         
           <li>
-            <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-%5D/">ctfshow-web入门-命令篇(三)[41-]</a>
+            <a href="/2025/01/30/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E5%9B%9B)%5B51-%5D/">ctfshow-web入门-命令篇(四)[51-]</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/25/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%89)%5B41-50%5D/">ctfshow-web入门-命令篇(三)[41-50]</a>
           </li>
         
           <li>
@@ -768,10 +857,6 @@
         
           <li>
             <a href="/2025/01/19/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87-(%E4%BA%8C)%5B26-28%5D/">ctfshow-web入门-爆破篇-(二)[26-28]</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/15/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4%E7%AF%87%20(%E4%B8%80)%5B21-25%5D/">ctfshow-web入门-爆破篇 (一)[21-25]</a>
           </li>
         
       </ul>

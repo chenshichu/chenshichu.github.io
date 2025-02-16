@@ -20,35 +20,35 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="ctfshow   web入门    命令篇(一)     web29   1.进入后发现是代码审计  2.目的是进入if中    首先要符合  !preg_match(“&#x2F;flag&#x2F;i”, $c )  即c的变量不能包含flag的大小">
+  <meta name="description" content="ctfshow   web入门    命令篇(一)     web29  1.进入后发现是代码审计  2.目的是进入if中    首先要符合  !preg_match(“&#x2F;flag&#x2F;i”, $c )  即c的变量不能包含flag的大小写">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctfshow-web入门-命令篇(一)[29-34]">
 <meta property="og:url" content="http://example.com/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)[29-34]/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ctfshow   web入门    命令篇(一)     web29   1.进入后发现是代码审计  2.目的是进入if中    首先要符合  !preg_match(“&#x2F;flag&#x2F;i”, $c )  即c的变量不能包含flag的大小">
+<meta property="og:description" content="ctfshow   web入门    命令篇(一)     web29  1.进入后发现是代码审计  2.目的是进入if中    首先要符合  !preg_match(“&#x2F;flag&#x2F;i”, $c )  即c的变量不能包含flag的大小写">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f3543bc6b0.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f35a2496b6.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f36a51360a.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f372d2fb84.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f3ab2b34a8.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f3b86929ee.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f3bc5194ab.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f3e98e9ad3.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f3f29440f5.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f3f4edee7a.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f461ee44ed.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f604f6f2ee.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f60e3845dd.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f659a402e2.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f66b028a14.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f66cea8227.png">
-<meta property="og:image" content="https://www.helloimg.com/i/2025/01/21/678f674a89c80.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b02a45418e7.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b02a45418fc.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b02a45418de.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b028cf6f6a1.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b028ceb4b51.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b028cf6f5d2.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b028cfa701d.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b028ceae92b.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b028cfae5bb.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b028cebebca.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b027d16a3ae.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b027d222254.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b027d230acc.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b027d167bf6.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b027d164d05.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b027d220368.png">
+<meta property="og:image" content="https://a1.boltp.com/2025/02/15/67b027d26de0b.png">
 <meta property="article:published_time" content="2025-01-21T05:50:32.000Z">
-<meta property="article:modified_time" content="2025-01-25T05:01:47.148Z">
+<meta property="article:modified_time" content="2025-02-15T05:47:36.914Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.helloimg.com/i/2025/01/21/678f3543bc6b0.png">
+<meta name="twitter:image" content="https://a1.boltp.com/2025/02/15/67b02a45418e7.png">
 
 <link rel="canonical" href="http://example.com/2025/01/21/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E7%AF%87(%E4%B8%80)[29-34]/">
 
@@ -198,7 +198,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-25 13:01:47" itemprop="dateModified" datetime="2025-01-25T13:01:47+08:00">2025-01-25</time>
+                <time title="Modified: 2025-02-15 13:47:36" itemprop="dateModified" datetime="2025-02-15T13:47:36+08:00">2025-02-15</time>
               </span>
 
           
@@ -214,49 +214,47 @@
       
         <p>                                                                        ctfshow   web入门    命令篇(一)</p>
 <p>    <strong>web29</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f3543bc6b0.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b02a45418e7.png"></p>
 <p>1.进入后发现是代码审计</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f35a2496b6.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02a45418fc.png"></p>
 <p>2.目的是进入if中    首先要符合  <strong>!preg_match(“&#x2F;flag&#x2F;i”, $c</strong> )  即c的变量不能包含flag的大小写(&#x2F;i指的是无视大小写)</p>
 <p>3.先查看网页的目录利用命令  <strong>ls</strong></p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f36a51360a.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b02a45418de.png"></p>
 <p>4.发现存在flag.php  利用*或?绕过    得到flag    用cat命令也可以但需要打开源代码才能查看flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f372d2fb84.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cf6f6a1.png"></p>
 <p><strong>web30</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f3ab2b34a8.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b028ceb4b51.png"></p>
 <p>1.进入后发发现我们要绕过**!preg_match(“&#x2F;flag|system|php&#x2F;i”, $c)**</p>
 <p>System可以用passthru代替</p>
 <p>flag.php  用fla?.php  或者  *符合绕过</p>
 <p>然后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3b86929ee.png"></p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3bc5194ab.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cf6f5d2.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cfa701d.png"></p>
 <p><strong>web31</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f3e98e9ad3.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b028ceae92b.png"></p>
 <p>1.进入后发现要绕过&#x2F;flag|system|php|cat|sort|shell|.| |&#39;&#x2F;i  比上一题多了个空格</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3f29440f5.png"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b028cfae5bb.png" title alt style="zoom:50%;">
+
 <p>空格可以用%09代替</p>
 <p>然后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f3f4edee7a.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b028cebebca.png"></p>
 <p><strong>web32</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f461ee44ed.png" title alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d16a3ae.png"></p>
 <p>1.进入网页后 发现过滤<code>flag|system|php|cat|sort|shell|\.| |\&#39;|\`|echo|\;|\(/i</code></p>
 <p>利用文件包含来获取</p>
 <p>c&#x3D;include$_GET[1]?&gt;&amp;1&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php(相当于建立一个a网页并把flag.php的内容进行base64编码后复制到a网页)</p>
-<img title src="https://www.helloimg.com/i/2025/01/21/678f604f6f2ee.png" alt style="zoom:33%;">
-
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d222254.png"></p>
 <p>2.进行base64解码 得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f60e3845dd.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d230acc.png"></p>
 <p><strong>web33</strong></p>
-<img src="https://www.helloimg.com/i/2025/01/21/678f659a402e2.png" title alt style="zoom:50%;">
+<img src="https://a1.boltp.com/2025/02/15/67b027d167bf6.png" title alt style="zoom:50%;">
 
 <p>1.和web32一样直接利用c&#x3D;include$_GET[1]?&gt;&amp;1&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f66b028a14.png" title alt style="zoom:33%;"><img src="https://www.helloimg.com/i/2025/01/21/678f66cea8227.png" title alt style="zoom:33%;"></p>
+<img src="https://a1.boltp.com/2025/02/15/67b027d164d05.png" title alt style="zoom:50%;">
+
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d220368.png"></p>
 <p>解码后得到flag</p>
-<p><img src="https://www.helloimg.com/i/2025/01/21/678f674a89c80.png"></p>
+<p><img src="https://a1.boltp.com/2025/02/15/67b027d26de0b.png"></p>
 <p><strong>web34</strong></p>
 <p>参考<strong>web33</strong>  一模一样</p>
 
